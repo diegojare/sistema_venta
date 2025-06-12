@@ -4,107 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Cliente</title>
 </head>
 
-<body>
-    <h1>Mantenimiento Cliente</h1>
-    <a th:href="@{/menu}">Menu</a>
-    <form th:action="@{/menu/cliente/guardar}" th:object="${cliente}" method="post">
-        <h2>Registrar</h1>
-            <input type="hidden" th:field="*{idCliente}" />
+<body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-gray-200 font-sans">
+    <div class="flex flex-col items-center mt-12">
+        <h1 class="text-4xl font-extrabold text-white mb-6">Mantenimiento <span class="text-violet-400">Cliente</span></h1>
+        <!-- Botón para abrir el modal -->
+        <button id="openModalBtn" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
+            Registrar Cliente
+        </button>
 
-            <label>Nombre:</label><br />
-            <input type="text" th:field="*{nombre}" required /><br /><br />
+        <!-- Modal -->
+        <div id="modalCliente" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 hidden">
+            <div class="bg-[#181c2a] w-full max-w-md p-8 rounded-xl shadow-2xl border border-violet-700 relative">
+                <button id="closeModalBtn" class="absolute top-2 right-2 text-gray-400 hover:text-violet-400 text-2xl font-bold">&times;</button>
+                <form th:action="@{/menu/cliente/guardar}" th:object="${cliente}" method="post">
+                    <h2 class="text-2xl font-bold text-violet-400 mb-6">Registrar</h2>
+                    <input type="hidden" th:field="*{idCliente}" />
 
-            <label>Correo:</label><br />
-            <input type="email" th:field="*{email}" required /><br /><br />
+                    <div class="mb-4">
+                        <label class="block text-gray-200 font-semibold mb-2">Nombre:</label>
+                        <input type="text" th:field="*{nombre}" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"/>
+                    </div>
 
+                    <div class="mb-6">
+                        <label class="block text-gray-200 font-semibold mb-2">Correo:</label>
+                        <input type="email" th:field="*{email}" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"/>
+                    </div>
 
-            <button type="submit">Guardar</button>
-            <button type="reset">Limpiar</button>
-    </form>
+                    <div class="flex justify-between">
+                        <button type="submit" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold rounded hover:scale-105 transition shadow">
+                            Guardar
+                        </button>
+                        <button type="reset" class="px-6 py-2 bg-gray-700 text-gray-200 font-bold rounded hover:bg-gray-600 transition shadow">
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="cliente : ${clientes}">
-                <td th:text="${cliente.idCliente}"></td>
-                <td th:text="${cliente.nombre}"></td>
-                <td th:text="${cliente.email}"></td>
-                <td>
-                    <a th:href="@{/menu/cliente/editar/{id}(id=${cliente.idCliente})}"><button>Editar</button></a> |
-                    <form th:action="@{/menu/cliente/eliminar/{id}(id=${cliente.idCliente})}" method="post"
-                        onclick="return confirm('¿Eliminar cliente?')">
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="flex flex-col mt-5">
-        <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div
-                class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                <table class="min-w-full">
+        <script>
+            const openModalBtn = document.getElementById('openModalBtn');
+            const modalCliente = document.getElementById('modalCliente');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            openModalBtn.addEventListener('click', () => {
+                modalCliente.classList.remove('hidden');
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modalCliente.classList.add('hidden');
+            });
+
+            // Cerrar modal al hacer click fuera del contenido
+            modalCliente.addEventListener('click', (e) => {
+                if (e.target === modalCliente) {
+                    modalCliente.classList.add('hidden');
+                }
+            });
+        </script>
+    </div>
+    <h2 class="mt-12 mb-4 text-2xl font-bold text-center text-white">Lista de Clientes</h2>
+    <div class="flex flex-col items-center mt-5">
+        <div class="w-4/5 py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="inline-block w-full overflow-hidden align-middle border-b border-gray-700 shadow-lg sm:rounded-lg bg-[#232946]">
+                <table class="min-w-full table-fixed">
+                    <colgroup>
+                        <col style="width:5%">
+                        <col style="width:40%">
+                        <col style="width:40%">
+                        <col style="width:15%">
+                    </colgroup>
                     <thead>
                         <tr>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
                                 ID</th>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
                                 Nombre</th>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
                                 Email</th>
-                            <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
                                 Acciones</th>
-
                         </tr>
                     </thead>
-
-                    <tbody class="bg-white">
-                        <tr th:each="cliente : ${clientes}">
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="flex items-center" th:text="${cliente.idCliente}" >
-
+                    <tbody>
+                        <tr th:each="cliente : ${clientes}" class="hover:bg-[#1e2235] transition">
+                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                <div class="flex items-center" th:text="${cliente.idCliente}"></div>
+                            </td>
+                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                <div class="text-sm leading-5 text-gray-100" th:text="${cliente.nombre}"></div>
+                            </td>
+                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-700">
+                                <span class="inline-flex px-2 text-xs font-semibold leading-5 text-violet-300 bg-violet-900 bg-opacity-30 rounded-full" th:text="${cliente.email}"></span>
+                            </td>
+                            <td class="px-2 py-4 text-sm leading-5 text-gray-300 whitespace-no-wrap border-b border-gray-700">
+                                <div class="flex flex-row space-x-2">
+                                    <a th:href="@{/menu/cliente/editar/{id}(id=${cliente.idCliente})}">
+                                        <button type="button" class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">
+                                            Editar
+                                        </button>
+                                    </a>
+                                    <form th:action="@{/menu/cliente/eliminar/{id}(id=${cliente.idCliente})}" method="post"
+                                        onclick="return confirm('¿Eliminar cliente?')">
+                                        <button type="submit" class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                                            Eliminar
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900" th:text="${cliente.nombre}"></div>
-                            </td>
-
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <span
-                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full" th:text="${cliente.email}"></span>
-                            </td>
-
-                            <td
-                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                            </td>
-
                         </tr>
-
-
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div>
-        <a class="border " th:href="@{/menu}">Regresar</a>
+    <div class="flex justify-center mt-8">
+        <a class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold" th:href="@{/menu}">
+            Regresar
+        </a>
     </div>
 </body>
 
