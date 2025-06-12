@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <header class="bg-white">
+<body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen">
+    <header class="bg-transparent">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="#" class="-m-1.5 p-1.5">
                     <span class="sr-only">test</span>
-                    <img class="h-8 w-auto" src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="">
+                    <img class="h-20 w-auto" src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="">
                 </a>
             </div>
             <div class="flex lg:hidden">
                 <button type="button"
-                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300">
                     <span class="sr-only">Open main menu</span>
                     <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                         aria-hidden="true" data-slot="icon">
@@ -29,45 +29,28 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-
-                <a th:href="@{/menu/cliente}" class="text-sm/6 font-semibold text-gray-900">Mantenimiento Cliente</a>
-                <a th:href="@{/menu/producto}" class="text-sm/6 font-semibold text-gray-900">Mantenimiento Producto</a>
-                <a th:href="@{/menu/venta}" class="text-sm/6 font-semibold text-gray-900">Registrar Venta</a>
+                <a th:href="@{/menu/cliente}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Cliente</a>
+                <a th:href="@{/menu/producto}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Producto</a>
+                <a th:href="@{/menu/venta}" class="text-base font-semibold text-white hover:text-violet-400 transition">Registrar Venta</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#" class="text-sm/6 font-semibold text-gray-900"> <span aria-hidden="true">&rarr;</span></a>
+                <a href="#" class="text-base font-semibold text-white hover:text-violet-400 transition">Salir <span aria-hidden="true">&rarr;</span></a>
             </div>
         </nav>
-
     </header>
     <main>
-                <div class="bg-white py-24 sm:py-32">
-            <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <h2 class="text-center text-lg/8 font-semibold text-gray-900">Trusted by the world’s most innovative
-                    teams</h2>
-                <div
-                    class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/transistor-logo-gray-900.svg"
-                        alt="Transistor" width="158" height="48">
-                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform"
-                        width="158" height="48">
-                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple"
-                        width="158" height="48">
-                    <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/savvycal-logo-gray-900.svg"
-                        alt="SavvyCal" width="158" height="48">
-                    <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-                        src="https://tailwindcss.com/plus-assets/img/logos/158x48/statamic-logo-gray-900.svg"
-                        alt="Statamic" width="158" height="48">
+        <div class="py-24 sm:py-32">
+            <div class="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+                <span class="inline-block bg-gradient-to-r from-indigo-500 to-pink-500 text-xs px-3 py-1 rounded-full mb-4 text-white font-semibold">Sistema de Ventas</span>
+                <h1 class="text-5xl font-extrabold text-white mb-6">Donde el mundo gestiona <span class="italic text-violet-400">ventas</span></h1>
+                <p class="text-lg text-gray-300 mb-8">Administra clientes, productos y ventas con una interfaz moderna y eficiente.</p>
+                <div class="flex justify-center gap-4">
+                    <a th:href="@{/menu/venta}" class="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold shadow-lg hover:scale-105 transition">Registrar Venta</a>
+                    <a th:href="@{/menu/cliente}" class="px-6 py-3 rounded-lg bg-gray-800 text-white font-bold border border-gray-700 hover:bg-gray-700 transition">Clientes</a>
+                    <a th:href="@{/menu/producto}" class="px-6 py-3 rounded-lg bg-gray-800 text-white font-bold border border-gray-700 hover:bg-gray-700 transition">Productos</a>
                 </div>
             </div>
         </div>
     </main>
-
-
 </body>
-
 </html>
