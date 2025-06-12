@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Editar Cliente</h1>
+    <a th:href="@{/menu}">Menu</a>
+    <a th:href="@{/menu/cliente}">Atras</a>
+    <form th:action="@{/menu/cliente/editar}" th:object="${cliente}" method="post">
+        <h2>Editar</h1>
+            <input type="hidden" th:field="*{idCliente}" />
+
+            <label>Nombre:</label><br />
+            <input type="text" th:field="*{nombre}" required /><br /><br />
+
+            <label>Correo:</label><br />
+            <input type="email" th:field="*{email}" required /><br /><br />
+
+
+            <button type="submit">Guardar</button>
+            <button type="reset">Limpiar</button>
+    </form>
+</body>
+</html>
