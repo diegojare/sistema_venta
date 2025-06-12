@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Document</title>
+    <title>Cliente</title>
 </head>
 
 <body>
@@ -42,13 +42,70 @@
                 <td th:text="${cliente.email}"></td>
                 <td>
                     <a th:href="@{/menu/cliente/editar/{id}(id=${cliente.idCliente})}"><button>Editar</button></a> |
-                    <form th:action="@{/menu/cliente/eliminar/{id}(id=${cliente.idCliente})}" method="post" onclick="return confirm('¿Eliminar cliente?')">
+                    <form th:action="@{/menu/cliente/eliminar/{id}(id=${cliente.idCliente})}" method="post"
+                        onclick="return confirm('¿Eliminar cliente?')">
                         <button type="submit">Eliminar</button>
                     </form>
                 </td>
             </tr>
         </tbody>
     </table>
+    <div class="flex flex-col mt-5">
+        <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div
+                class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                ID</th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Nombre</th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Email</th>
+                            <th
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                Acciones</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody class="bg-white">
+                        <tr th:each="cliente : ${clientes}">
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="flex items-center" th:text="${cliente.idCliente}" >
+
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm leading-5 text-gray-900" th:text="${cliente.nombre}"></div>
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <span
+                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full" th:text="${cliente.email}"></span>
+                            </td>
+
+                            <td
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a class="border " th:href="@{/menu}">Regresar</a>
+    </div>
 </body>
 
 </html>
