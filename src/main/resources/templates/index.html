@@ -1,16 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Login</title>
+    <script src="js/modals.js"></script>
+    <style>
+        /* Animación de fondo */
+        .animated-bg {
+            background: linear-gradient(120deg, #0f172a, #1e293b, #312e81, #0f172a);
+            background-size: 200% 200%;
+            animation: gradientMove 6s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <form action="">
-        
-    </form>
-    
-    
+    <div class="flex items-center justify-center min-h-screen animated-bg">
+        <form action="" method="post" class="bg-[#181c2a] p-8 rounded-2xl shadow-2xl border border-violet-700 w-full max-w-sm
+               animate-fade-in transition-all duration-500">
+            <div class="flex flex-col items-center mb-6">
+                <img src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="Logo"
+                    class="h-16 w-16 mb-2 drop-shadow-lg animate-bounce-slow" />
+                <h2 class="text-2xl font-extrabold text-center text-white tracking-wide">Iniciar Sesión</h2>
+            </div>
+            <div class="mb-4">
+                <label for="username" class="block text-gray-200 mb-2 font-semibold">Usuario</label>
+                <input type="text" id="username" name="username" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white
+                       focus:outline-none focus:ring-2 focus:ring-violet-400 transition-all duration-300
+                       focus:scale-105" />
+            </div>
+            <div class="mb-6">
+                <label for="password" class="block text-gray-200 mb-2 font-semibold">Contraseña</label>
+                <input type="password" id="password" name="password" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white
+                       focus:outline-none focus:ring-2 focus:ring-violet-400 transition-all duration-300
+                       focus:scale-105" />
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-violet-500 text-white py-2 rounded font-bold
+                   hover:scale-105 hover:shadow-xl transition-all duration-300 shadow">
+                Entrar
+            </button>
+            <div class="mt-6 text-center">
+                <a href="#" class="text-sm text-violet-400 hover:underline transition">¿Olvidaste tu contraseña?</a>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        .animate-fade-in {
+            opacity: 0;
+            transition: opacity 0.8s;
+        }
+
+        .animate-fade-in.opacity-100 {
+            opacity: 1;
+        }
+
+
+        .animate-bounce-slow {
+            animation: bounce 2.5s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
 </body>
+
 </html>
+<script>
+
+    document.querySelector('form').classList.add('opacity-0');
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            document.querySelector('form').classList.remove('opacity-0');
+            document.querySelector('form').classList.add('opacity-100');
+        }, 100);
+    });
+</script>
