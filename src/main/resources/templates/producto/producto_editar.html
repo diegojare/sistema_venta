@@ -29,9 +29,6 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <!-- <a th:href="@{/menu/cliente}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Cliente</a>
-                <a th:href="@{/menu/producto}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Producto</a>
-                <a th:href="@{/menu/venta}" class="text-base font-semibold text-white hover:text-violet-400 transition">Registrar Venta</a> -->
                 <h1 class="text-5xl font-extrabold text-white mb-6">CYBERSHOES</h1>
             </div>
 
@@ -84,8 +81,8 @@
                 <a th:href="@{/menuA/producto}"
                     class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition font-semibold">Atrás</a>
             </div>
-            <form th:action="@{/menuV/cliente/editar}" th:object="${cliente}" method="post">
-                <input type="hidden" th:field="*{idCliente}" />
+            <form th:action="@{/menuA/producto/editar}" th:object="${producto}" method="post">
+                <input type="hidden" th:field="*{idProducto}" />
 
                 <div class="mb-4">
                     <label class="block text-gray-200 font-semibold mb-2">Nombre:</label>
@@ -101,16 +98,6 @@
                     <label class="block text-gray-200 font-semibold mb-2">Precio:</label>
                     <input type="number" step="0.01" min="0" th:field="*{precioProd}" required
                         class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Sexo:</label>
-                    <select th:field="*{sexoCliente}"
-                        class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"
-                        required>
-                        <option value="">-- Seleccione --</option>
-                        <option value="Hombre">Hombre</option>
-                        <option value="Mujer">Mujer</option>
-                    </select>
                 </div>
 
                 <div class="mb-6">
