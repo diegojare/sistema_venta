@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Venta</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-gray-200 font-sans">
     <div class="container mx-auto py-12 px-4">
         <div class="flex flex-col lg:flex-row gap-10">
@@ -15,27 +17,34 @@
                 <form th:action="@{/menu/venta/guardar}" th:object="${venta}" method="post">
                     <div class="mb-4">
                         <label class="block text-gray-200 font-semibold mb-2">Cliente:</label>
-                        <select th:field="*{cliente}" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
+                        <select th:field="*{cliente}" required
+                            class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
                             <option value="" selected>-- Seleccione un cliente --</option>
-                            <option th:each="cliente : ${clientes}" th:value="${cliente.idCliente}" th:text="${cliente.nomCliente}"></option>
+                            <option th:each="cliente : ${clientes}" th:value="${cliente.idCliente}"
+                                th:text="${cliente.nomCliente}"></option>
                         </select>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-200 font-semibold mb-2">Producto:</label>
-                        <select th:field="*{producto}" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
+                        <select th:field="*{producto}" required
+                            class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
                             <option value="" selected>-- Seleccione un producto --</option>
-                            <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.nomProd}"></option>
+                            <option th:each="producto : ${productos}" th:value="${producto.idProducto}"
+                                th:text="${producto.nomProd}"></option>
                         </select>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-200 font-semibold mb-2">Cantidad:</label>
-                        <input type="number" min="1" th:field="*{cantidad}" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"/>
+                        <input type="number" min="1" th:field="*{cantidad}" required
+                            class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
                     </div>
                     <div class="mb-6">
                         <label class="block text-gray-200 font-semibold mb-2">Fecha:</label>
-                        <input type="date" th:field="*{fecha}" required class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"/>
+                        <input type="date" th:field="*{fecha}" required
+                            class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
                     </div>
-                    <button type="submit" class="w-full px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold rounded hover:scale-105 transition shadow">
+                    <button type="submit"
+                        class="w-full px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold rounded hover:scale-105 transition shadow">
                         Guardar Venta
                     </button>
                 </form>
@@ -55,28 +64,45 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">ID</th>
-                                <th class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">Cliente</th>
-                                <th class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">Producto</th>
-                                <th class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">Cantidad</th>
-                                <th class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">Fecha</th>
-                                <th class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">Acciones</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    ID</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Cliente</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Producto</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Cantidad</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Fecha</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="venta : ${ventas}" class="hover:bg-[#1e2235] transition">
                                 <td class="px-4 py-4 border-b border-gray-700" th:text="${venta.idVenta}"></td>
-                                <td class="px-4 py-4 border-b border-gray-700" th:text="${venta.cliente.nomCliente}"></td>
+                                <td class="px-4 py-4 border-b border-gray-700" th:text="${venta.cliente.nomCliente}">
+                                </td>
                                 <td class="px-4 py-4 border-b border-gray-700" th:text="${venta.producto.nomProd}"></td>
                                 <td class="px-4 py-4 border-b border-gray-700" th:text="${venta.cantidad}"></td>
-                                <td class="px-4 py-4 border-b border-gray-700" th:text="${#temporals.format(venta.fecha, 'dd-MM-yyyy')}"></td>
+                                <td class="px-4 py-4 border-b border-gray-700"
+                                    th:text="${#temporals.format(venta.fecha, 'dd-MM-yyyy')}"></td>
                                 <td class="px-2 py-4 border-b border-gray-700">
                                     <div class="flex flex-row space-x-2">
                                         <a th:href="@{/menu/venta/editar/{id}(id=${venta.idVenta})}">
-                                            <button type="button" class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">Editar</button>
+                                            <button type="button"
+                                                class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">Editar</button>
                                         </a>
-                                        <form th:action="@{/menu/venta/eliminar/{id}(id=${venta.idVenta})}" method="post" onclick="return confirm('¿Eliminar venta?')">
-                                            <button type="submit" class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">Eliminar</button>
+                                        <form th:action="@{/menu/venta/eliminar/{id}(id=${venta.idVenta})}"
+                                            method="post" onclick="return confirm('¿Eliminar venta?')">
+                                            <button type="submit"
+                                                class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">Eliminar</button>
                                         </form>
                                     </div>
                                 </td>
@@ -85,12 +111,14 @@
                     </table>
                 </div>
                 <div class="flex justify-center mt-8">
-                    <a th:href="@{/menu}" class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold">Menú Principal</a>
+                    <a th:href="@{/menu}"
+                        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold">Menú
+                        Principal</a>
                 </div>
             </div>
         </div>
     </div>
-     <footer class="bg-gray-900 text-white text-center py-4 w-full absolute bottom-0">
+    <footer class="bg-gray-900 text-white text-center py-4 mt-12 w-full a</footer>bsolute bottom-0">
         <div class="container mx-auto px-4">
             <p class="mb-1">&copy;2025 Cibertec | Proyecto de Lenguaje Programacion II</p>
             <p class="mb-1">
@@ -109,4 +137,5 @@
         </div>
     </footer>
 </body>
+
 </html>
