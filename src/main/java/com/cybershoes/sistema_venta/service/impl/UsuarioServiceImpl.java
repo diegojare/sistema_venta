@@ -43,4 +43,9 @@ public class UsuarioServiceImpl implements UsuarioService {
        return usuarioRepository.findByUsernameAndClave(usuario.getUsername(), usuario.getClave());
     }
 
+    @Override
+    public List<Usuario> listarPorUsername(String username) {
+        return usuarioRepository.findByUsername(username);
+    }
+
 }

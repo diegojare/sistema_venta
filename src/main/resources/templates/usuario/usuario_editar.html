@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Editar Cliente</title>
+    <title>Editar Usuario</title>
 </head>
 
 <body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-gray-200 font-sans">
     <header class="bg-transparent">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a th:href="@{/menuA}" class="-m-1.5 p-1.5">
+                <a th:href="@{/menuAd}" class="-m-1.5 p-1.5">
                     <span class="sr-only">test</span>
                     <img class="h-20 w-auto" src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="">
                 </a>
@@ -29,9 +29,6 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <!-- <a th:href="@{/menu/cliente}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Cliente</a>
-                <a th:href="@{/menu/producto}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Producto</a>
-                <a th:href="@{/menu/venta}" class="text-base font-semibold text-white hover:text-violet-400 transition">Registrar Venta</a> -->
                 <h1 class="text-5xl font-extrabold text-white mb-6">CYBERSHOES</h1>
             </div>
 
@@ -78,58 +75,36 @@
     <div class="flex flex-col items-center justify-center min-h-screen">
         <div class="bg-[#181c2a] p-8 rounded-xl shadow-2xl border border-violet-700 w-full max-w-md">
             <h1 class="text-3xl font-extrabold text-white mb-6 text-center">Editar <span
-                    class="text-violet-400">Cliente</span></h1>
+                    class="text-violet-400">Usuario</span></h1>
             <div class="flex justify-between mb-6">
-                <a th:href="@{/menuV}"
+                <a th:href="@{/menuAd}"
                     class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition font-semibold">Menú</a>
-                <a th:href="@{/menuV/cliente}"
+                <a th:href="@{/menuAd/usuario}"
                     class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition font-semibold">Atrás</a>
             </div>
-            <form th:action="@{/menuV/cliente/editar}" th:object="${cliente}" method="post">
-                <input type="hidden" th:field="*{idCliente}" />
+            <form th:action="@{/menuAd/usuario/editar}" th:object="${usuario}" method="post">
+                <input type="hidden" th:field="*{idUsuario}" />
 
                 <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Nombre:</label>
-                    <input type="text" th:field="*{nomCliente}" required
+                    <label class="block text-gray-200 font-semibold mb-2">Username:</label>
+                    <input type="text" th:field="*{username}" required
                         class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Apellido:</label>
-                    <input type="text" th:field="*{apeCliente}" required
+                    <label class="block text-gray-200 font-semibold mb-2">Contraseña:</label>
+                    <input type="text" th:field="*{clave}" required
                         class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Dni:</label>
-                    <input type="text" th:field="*{dniCliente}" required
-                        class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Sexo:</label>
-                    <select th:field="*{sexoCliente}"
+                    <label class="block text-gray-200 font-semibold mb-2">Rol:</label>
+                    <select th:field="*{rol}"
                         class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"
                         required>
-                        <option value="">-- Seleccione --</option>
-                        <option value="Hombre">Hombre</option>
-                        <option value="Mujer">Mujer</option>
+                        <option value="">-- Seleccione Rol --</option>
+                                <option th:each="rol : ${roles}" th:value="${rol.idRol}"
+                                th:text="${rol.nomRol}"></option>
                     </select>
                 </div>
-
-                <div class="mb-6">
-                    <label class="block text-gray-200 font-semibold mb-2">Email:</label>
-                    <input type="text" th:field="*{emailCliente}" required
-                        class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Telefono:</label>
-                    <input type="text" th:field="*{telefCliente}" required
-                        class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-200 font-semibold mb-2">Fecha Nacimiento:</label>
-                    <input type="date" th:field="*{fecNacimCliente}" required
-                        class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                </div>
-
                 <div class="flex justify-between">
                     <button type="submit"
                         class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold rounded hover:scale-105 transition shadow">

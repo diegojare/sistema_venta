@@ -34,10 +34,14 @@ public class LoginController {
         Usuario user = usuarioService.login(usuario);
         if (user != null) {
             if (user.getRol().getIdRol() == 1) {
+                return "redirect:/menuAd";
+            } else if (user.getRol().getIdRol() == 2) {
                 return "redirect:/menuV";
             } else {
                 return "redirect:/menuA";
             }
+
+
         } else{
             return "index";
         }

@@ -16,5 +16,10 @@ public class MenuController {
     public String menuA() {
         return "usuario/menuA";
     }
+
+    @GetMapping("/menuAd")
+    public String menuAd() {
+        return "usuario/menuAd";
+    }
     
 }
