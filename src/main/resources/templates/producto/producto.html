@@ -10,6 +10,72 @@
 </head>
 
 <body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-gray-200 font-sans">
+    <header class="bg-transparent">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div class="flex lg:flex-1">
+                <a th:href="@{/menuV}" class="-m-1.5 p-1.5">
+                    <span class="sr-only">test</span>
+                    <img class="h-20 w-auto" src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="">
+                </a>
+            </div>
+            <div class="flex lg:hidden">
+                <button type="button"
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true" data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden lg:flex lg:gap-x-12">
+                <!-- <a th:href="@{/menu/cliente}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Cliente</a>
+                <a th:href="@{/menu/producto}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Producto</a>
+                <a th:href="@{/menu/venta}" class="text-base font-semibold text-white hover:text-violet-400 transition">Registrar Venta</a> -->
+                <h1 class="text-5xl font-extrabold text-white mb-6">CYBERSHOES</h1>
+            </div>
+
+            <div class="relative hidden lg:flex lg:flex-1 lg:justify-end">
+            <button id="userMenuButton" type="button"
+                class="flex items-center focus:outline-none"
+                aria-haspopup="true" aria-expanded="false">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    alt="user" class="w-10 h-10 rounded-full">
+                <svg class="ml-2 w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.08z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+
+            <!-- Menú desplegable -->
+            <div id="userMenu"
+                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+                <div class="py-1">
+                    <form th:action="@{/login}" method="post" class="text-center">
+                        <button type="submit"
+                            class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
+                            Cerrar sesión
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <script>
+        const userBtn = document.getElementById('userMenuButton');
+        const userMenu = document.getElementById('userMenu');
+
+        document.addEventListener('click', function (e) {
+            const isClickInside = userBtn.contains(e.target) || userMenu.contains(e.target);
+            if (isClickInside) {
+                userMenu.classList.toggle('hidden');
+            } else {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
     <div class="flex flex-col items-center mt-12">
         <h1 class="text-4xl font-extrabold text-white mb-6">Mantenimiento <span class="text-violet-400">Producto</span>
         </h1>
@@ -62,43 +128,21 @@
     </div>
 
 
-<<<<<<< HEAD:src/main/resources/templates/producto/producto.html
-        openModalProductoBtn.addEventListener('click', () => {
-            modalProducto.classList.remove('hidden');
-        });
-
-        closeModalProductoBtn.addEventListener('click', () => {
-            modalProducto.classList.add('hidden');
-        });
-
-        modalProducto.addEventListener('click', (e) => {
-            if (e.target === modalProducto) {
-                modalProducto.classList.add('hidden');
-            }
-        });
-    </script>
-    <form th:action="@{/menuA/producto}" method="get" >
-        <input type="text" name="filtro"  placeholder="Buscar Producto">
-        <button type="submit" >Buscar</button>
-        <a th:href="@{/menuA/producto}" >Limpiar</a>
-    </form>
-=======
     <div class="flex justify-between w-4/5 mx-auto mb-4 items-center">
         <button id="openModalProductoBtn"
             class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
             Registrar Producto
         </button>
-        <form th:action="@{/menu/producto}" method="get"
+        <form th:action="@{/menuA/producto}" method="get"
             class="flex items-center space-x-2 bg-[#232946] p-3 rounded-lg shadow border border-violet-700">
             <input type="text" name="filtro" placeholder="Buscar Cliente"
                 class="px-3 py-2 rounded bg-[#181c2a] text-white border border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
             <button type="submit"
                 class="px-4 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded font-semibold hover:scale-105 transition shadow">Buscar</button>
-            <a th:href="@{/menu/producto}"
+            <a th:href="@{/menuA/producto}"
                 class="px-4 py-2 bg-gray-700 text-gray-200 rounded font-semibold hover:bg-gray-600 transition shadow">Limpiar</a>
         </form>
     </div>
->>>>>>> d387b4b63012782ed32b313ca144c1a51f22bdeb:src/main/resources/templates/producto.html
     <div class="flex flex-col items-center">
         <div class="w-[85%] py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div
