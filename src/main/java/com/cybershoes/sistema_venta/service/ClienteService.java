@@ -11,5 +11,7 @@ public interface ClienteService {
     Optional<Cliente> obtenerPorId(Long id);
     Cliente guardar(Cliente cliente);
     void eliminar(Long id);
+
+    List<Cliente> listarPorDniONombreOApellido(String filtro);
     
 }

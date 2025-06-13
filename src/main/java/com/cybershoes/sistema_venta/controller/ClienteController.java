@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cybershoes.sistema_venta.model.Cliente;
 import com.cybershoes.sistema_venta.service.ClienteService;
@@ -13,9 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
-
 
 
 
@@ -31,8 +29,15 @@ public class ClienteController {
 
 
     @GetMapping
-    public String cliente(Model model) {
-        List<Cliente> clientes = clienteService.listarTodos();
+    public String cliente(Model model, @RequestParam(required = false) String filtro) {
+        List<Cliente> clientes;
+
+        if (filtro != null && !filtro.isBlank()) {
+            clientes = clienteService.listarPorDniONombreOApellido(filtro);
+        } else {
+            clientes = clienteService.listarTodos();
+        }
+
         model.addAttribute("cliente", new Cliente());
         model.addAttribute("clientes", clientes);
         return "cliente";

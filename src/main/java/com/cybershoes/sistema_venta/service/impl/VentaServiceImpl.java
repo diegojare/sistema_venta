@@ -27,10 +27,10 @@ public class VentaServiceImpl implements VentaService {
     @Transactional
     public Venta registrarVenta(Venta venta) {
         Producto producto = venta.getProducto();
-        if (producto.getStock() < venta.getCantidad()) {
+        if (producto.getStockProd() < venta.getCantidad()) {
             throw new IllegalArgumentException("Stock insuficiente");
         }
-        producto.setStock(producto.getStock() - venta.getCantidad());
+        producto.setStockProd(producto.getStockProd() - venta.getCantidad());
         productoRepository.save(producto);
         return ventaRepository.save(venta);
     }

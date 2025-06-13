@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cybershoes.sistema_venta.model.Producto;
 import com.cybershoes.sistema_venta.service.ProductoService;
@@ -25,8 +26,16 @@ public class ProductoController {
     }
 
     @GetMapping
-    public String producto(Model model) {
-        List<Producto> productos = productoService.listarTodos();
+    public String producto(Model model, @RequestParam(required = false) String filtro) {
+        List<Producto> productos;
+
+        if (filtro != null && !filtro.isBlank()) {
+            productos = productoService.listarPorNombreOMarca(filtro);
+        } else {
+            productos = productoService.listarTodos();
+        }
+
+
         model.addAttribute("producto", new Producto());
         model.addAttribute("productos", productos);
         return "producto";

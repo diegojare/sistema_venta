@@ -28,29 +28,60 @@
                     </svg>
                 </button>
             </div>
-            <div class="hidden lg:flex lg:gap-x-12">
+            <!-- <div class="hidden lg:flex lg:gap-x-12">
                 <a th:href="@{/menu/cliente}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Cliente</a>
                 <a th:href="@{/menu/producto}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Producto</a>
                 <a th:href="@{/menu/venta}" class="text-base font-semibold text-white hover:text-violet-400 transition">Registrar Venta</a>
-            </div>
+            </div> -->
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#" class="text-base font-semibold text-white hover:text-violet-400 transition">Salir <span aria-hidden="true">&rarr;</span></a>
+                <a href="#" class="text-base font-semibold text-white hover:text-violet-400 transition">Salir <span
+                        aria-hidden="true">&rarr;</span></a>
             </div>
         </nav>
     </header>
     <main>
         <div class="py-24 sm:py-32">
             <div class="mx-auto max-w-4xl px-6 lg:px-8 text-center">
-                <span class="inline-block bg-gradient-to-r from-indigo-500 to-pink-500 text-xs px-3 py-1 rounded-full mb-4 text-white font-semibold">Sistema de Ventas</span>
-                <h1 class="text-5xl font-extrabold text-white mb-6">Donde el mundo gestiona <span class="italic text-violet-400">ventas</span></h1>
-                <p class="text-lg text-gray-300 mb-8">Administra clientes, productos y ventas con una interfaz moderna y eficiente.</p>
+                <span
+                    class="inline-block bg-gradient-to-r from-indigo-500 to-pink-500 text-xs px-3 py-1 rounded-full mb-4 text-white font-semibold">Sistema
+                    de Ventas</span>
+                <h1 class="text-5xl font-extrabold text-white mb-6">Donde el mundo gestiona <span
+                        class="italic text-violet-400">ventas</span></h1>
+                <p class="text-lg text-gray-300 mb-8">Administra clientes, productos y ventas con una interfaz moderna y
+                    eficiente.</p>
                 <div class="flex justify-center gap-4">
-                    <a th:href="@{/menu/venta}" class="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold shadow-lg hover:scale-105 transition">Registrar Venta</a>
-                    <a th:href="@{/menu/cliente}" class="px-6 py-3 rounded-lg bg-gray-800 text-white font-bold border border-gray-700 hover:bg-gray-700 transition">Clientes</a>
-                    <a th:href="@{/menu/producto}" class="px-6 py-3 rounded-lg bg-gray-800 text-white font-bold border border-gray-700 hover:bg-gray-700 transition">Productos</a>
+                    <a th:href="@{/menu/venta}"
+                        class="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold shadow-lg hover:scale-105 transition">Registrar
+                        Venta</a>
+                    <a th:href="@{/menu/cliente}"
+                        class="px-6 py-3 rounded-lg bg-gray-800 text-white font-bold border border-gray-700 hover:bg-gray-700 transition">Mantenimiento
+                        Clientes</a>
+                    <a th:href="@{/menu/producto}"
+                        class="px-6 py-3 rounded-lg bg-gray-800 text-white font-bold border border-gray-700 hover:bg-gray-700 transition">Mantenimiento
+                        Productos</a>
                 </div>
             </div>
         </div>
     </main>
+    <footer class="bg-gray-900 text-white text-center py-4 w-full absolute bottom-0">
+        <div class="container mx-auto px-4">
+            <p class="mb-1">&copy;2025 Cibertec | Proyecto de Lenguaje Programacion II</p>
+            <p class="mb-1">
+                Desarrollado por: Diego Cabrera & Kaled Noronha
+            </p>
+            <p class="mb-0">
+                Síguenos:
+                <a href="https://github.com/diegojare" target="_blank" class="text-white underline">
+                    GitHub
+                </a>
+                |
+                <a href="https://github.com/KaleNoronha" target="_blank" class="text-white underline">
+                    GitHub
+                </a>
+            </p>
+        </div>
+    </footer>
+
 </body>
+
 </html>

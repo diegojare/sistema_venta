@@ -37,4 +37,9 @@ public class ProductoServiceImpl implements ProductoService {
     public void eliminar(Long id) {
         productoRepository.deleteById(id);
     }
+
+    @Override
+    public List<Producto> listarPorNombreOMarca(String filtro) {
+        return productoRepository.findByNomProdStartingWithIgnoreCaseOrMarcaProdContainingIgnoreCase(filtro, filtro);
+    }
 }

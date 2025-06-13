@@ -38,4 +38,9 @@ public class ClienteServiceImpl implements ClienteService {
         clienteRepository.deleteById(id);
     }
 
+    @Override
+    public List<Cliente> listarPorDniONombreOApellido(String filtro) {
+        return clienteRepository.findByDniClienteStartingWithOrNomClienteContainingIgnoreCaseOrApeClienteContainingIgnoreCase(filtro, filtro, filtro);
+    }
+
 }
