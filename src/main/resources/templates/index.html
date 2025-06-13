@@ -7,10 +7,15 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="">
-        
+    <form th:action="@{/login}" method="post">
+        <h1>Login</h1>
+        <label for="">Username</label> <br>
+        <input type="text" id="username" name="username"><br>
+        <label for="">Clave</label><br>
+        <input type="text" id="clave" name="clave"><br>
+        <button type="submit">Iniciar Sesion</button>
+        <button type="reset">Limpiar</button>
     </form>
-    
     
 </body>
 </html>

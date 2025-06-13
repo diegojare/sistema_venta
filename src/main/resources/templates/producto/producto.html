@@ -13,7 +13,7 @@
     <div class="flex flex-col items-center mt-12">
         <h1 class="text-4xl font-extrabold text-white mb-6">Mantenimiento <span class="text-violet-400">Producto</span>
         </h1>
-        <a th:href="@{/menu}"
+        <a th:href="@{/menuA}"
             class="mb-8 px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold">Menú</a>
         <button id="openModalProductoBtn"
             class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
@@ -27,7 +27,7 @@
         <div class="bg-[#181c2a] w-full max-w-md p-8 rounded-xl shadow-2xl border border-violet-700 relative">
             <button id="closeModalProductoBtn"
                 class="absolute top-2 right-2 text-gray-400 hover:text-violet-400 text-2xl font-bold">&times;</button>
-            <form th:action="@{/menu/producto/guardar}" th:object="${producto}" method="post">
+            <form th:action="@{/menuA/producto/guardar}" th:object="${producto}" method="post">
                 <h2 class="text-2xl font-bold text-violet-400 mb-6">Registrar Producto</h2>
                 <input type="hidden" th:field="*{idProducto}" />
 
@@ -84,10 +84,10 @@
             }
         });
     </script>
-    <form th:action="@{/menu/producto}" method="get" >
+    <form th:action="@{/menuA/producto}" method="get" >
         <input type="text" name="filtro"  placeholder="Buscar Producto">
         <button type="submit" >Buscar</button>
-        <a th:href="@{/menu/producto}" >Limpiar</a>
+        <a th:href="@{/menuA/producto}" >Limpiar</a>
     </form>
     <div class="flex flex-col items-center">
         <div class="w-4/5 py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -136,11 +136,11 @@
                             <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.stockProd}"></td>
                             <td class="px-2 py-4 border-b border-gray-700">
                                 <div class="flex flex-row space-x-2">
-                                    <a th:href="@{/menu/producto/editar/{id}(id=${producto.idProducto})}">
+                                    <a th:href="@{/menuA/producto/editar/{id}(id=${producto.idProducto})}">
                                         <button type="button"
                                             class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">Editar</button>
                                     </a>
-                                    <form th:action="@{/menu/producto/eliminar/{id}(id=${producto.idProducto})}"
+                                    <form th:action="@{/menuA/producto/eliminar/{id}(id=${producto.idProducto})}"
                                         method="post" onclick="return confirm('¿Eliminar producto?')">
                                         <button type="submit"
                                             class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">Eliminar</button>

@@ -1,17 +1,20 @@
 package com.cybershoes.sistema_venta.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-@RequestMapping("/menu")
 public class MenuController {
 
-    @GetMapping("")
-    public String menu() {
-        return "menu";
+    @GetMapping("/menuV")
+    public String menuV() {
+        return "usuario/menuV";
+    }
+
+    @GetMapping("/menuA")
+    public String menuA() {
+        return "usuario/menuA";
     }
     
 }

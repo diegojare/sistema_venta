@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/menu/producto")
+@RequestMapping("/menuA/producto")
 public class ProductoController {
 
     private final ProductoService productoService;
@@ -38,31 +38,31 @@ public class ProductoController {
 
         model.addAttribute("producto", new Producto());
         model.addAttribute("productos", productos);
-        return "producto";
+        return "producto/producto";
     }
 
     @PostMapping("/guardar")
     public String guardarProducto(@ModelAttribute Producto producto) {
         productoService.guardar(producto);
-        return "redirect:/menu/producto";
+        return "redirect:/menuA/producto";
     }
 
     @GetMapping("/editar/{id}")
     public String editarProducto(@PathVariable Long id, Model model) {
         Optional<Producto> producto = productoService.obtenerPorId(id);
         model.addAttribute("producto", producto);
-        return "producto_editar";
+        return "producto/producto_editar";
     }
 
     @PostMapping("/editar")
     public String editarProducto(@ModelAttribute Producto producto) {
         productoService.guardar(producto);
-        return "redirect:/menu/producto";
+        return "redirect:/menuA/producto";
     }
 
     @PostMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {
         productoService.eliminar(id);
-        return "redirect:/menu/producto";
+        return "redirect:/menuA/producto";
     }
 }

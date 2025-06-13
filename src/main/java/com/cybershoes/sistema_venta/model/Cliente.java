@@ -29,7 +29,7 @@ public class Cliente {
     private String dniCliente;
     private String sexoCliente;
     private String emailCliente;
-    @Pattern(regexp = "\\d{1,9}", message = "El telefono debe tener 9 dígitos")
+    @Pattern(regexp = "\\d{1,9}", message = "El telefono 9")
     private String telefCliente;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecNacimCliente;

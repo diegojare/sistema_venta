@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/menu/venta")
+@RequestMapping("/menuV/venta")
 public class VentaController {
 
     private final VentaService ventaService;
@@ -42,31 +42,31 @@ public class VentaController {
         model.addAttribute("clientes", clientes);
         model.addAttribute("productos", productos);
         model.addAttribute("ventas", ventas);
-        return "venta";
+        return "venta/venta";
     }
 
     @PostMapping("/guardar")
     public String guardarVenta(@ModelAttribute Venta venta) {
         ventaService.registrarVenta(venta);
-        return "redirect:/menu/venta";
+        return "redirect:/menuV/venta";
     }
 
     @GetMapping("/editar/{id}")
     public String editarVenta(@PathVariable Long id, Model model) {
         Optional<Venta> venta = ventaService.obtenerPorId(id);
         model.addAttribute("venta", venta);
-        return "venta_editar";
+        return "venta/venta_editar";
     }
 
     @PostMapping("/editar")
     public String editarVenta(@ModelAttribute Venta venta) {
         ventaService.registrarVenta(venta);
-        return "redirect:/menu/venta";
+        return "redirect:/menuV/venta";
     }
 
     @PostMapping("/eliminar/{id}")
     public String eliminarVenta(@PathVariable Long id) {
         ventaService.eliminar(id);
-        return "redirect:/menu/venta";
+        return "redirect:/menuV/venta";
     }
 }

@@ -24,7 +24,7 @@
             <div class="bg-[#181c2a] w-full max-w-md p-8 rounded-xl shadow-2xl border border-violet-700 relative">
                 <button id="closeModalBtn"
                     class="absolute top-2 right-2 text-gray-400 hover:text-violet-400 text-2xl font-bold">&times;</button>
-                <form th:action="@{/menu/cliente/guardar}" th:object="${cliente}" method="post">
+                <form th:action="@{/menuV/cliente/guardar}" th:object="${cliente}" method="post">
                     <h2 class="text-2xl font-bold text-violet-400 mb-6">Registrar</h2>
                     <input type="hidden" th:field="*{idCliente}" />
 
@@ -107,10 +107,10 @@
         </script>
     </div>
     <h2 class="mt-12 mb-4 text-2xl font-bold text-center text-white">Lista de Clientes</h2>
-    <form th:action="@{/menu/cliente}" method="get" >
+    <form th:action="@{/menuV/cliente}" method="get" >
         <input type="text" name="filtro"  placeholder="Buscar Cliente">
         <button type="submit" >Buscar</button>
-        <a th:href="@{/menu/cliente}" >Limpiar</a>
+        <a th:href="@{/menuV/cliente}" >Limpiar</a>
     </form>
     <div class="flex flex-col items-center mt-5">
         <div class="w-4/5 py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -192,13 +192,13 @@
                             <td
                                 class="px-2 py-4 text-sm leading-5 text-gray-300 whitespace-no-wrap border-b border-gray-700">
                                 <div class="flex flex-row space-x-2">
-                                    <a th:href="@{/menu/cliente/editar/{id}(id=${cliente.idCliente})}">
+                                    <a th:href="@{/menuV/cliente/editar/{id}(id=${cliente.idCliente})}">
                                         <button type="button"
                                             class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">
                                             Editar
                                         </button>
                                     </a>
-                                    <form th:action="@{/menu/cliente/eliminar/{id}(id=${cliente.idCliente})}"
+                                    <form th:action="@{/menuV/cliente/eliminar/{id}(id=${cliente.idCliente})}"
                                         method="post" onclick="return confirm('¿Eliminar cliente?')">
                                         <button type="submit"
                                             class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
@@ -215,7 +215,7 @@
     </div>
     <div class="flex justify-center mt-8">
         <a class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold"
-            th:href="@{/menu}">
+            th:href="@{/menuV}">
             Regresar
         </a>
     </div>
