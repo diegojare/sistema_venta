@@ -9,17 +9,17 @@ public class MenuController {
 
     @GetMapping("/menuV")
     public String menuV() {
-        return "usuario/menuV";
+        return "menu/menuV";
     }
 
     @GetMapping("/menuA")
     public String menuA() {
-        return "usuario/menuA";
+        return "menu/menuA";
     }
 
     @GetMapping("/menuAd")
     public String menuAd() {
-        return "usuario/menuAd";
+        return "menu/menuAd";
     }
     
 }
