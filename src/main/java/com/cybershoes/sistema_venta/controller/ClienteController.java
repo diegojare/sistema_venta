@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-@RequestMapping("/menu/cliente")
+@RequestMapping("/menuV/cliente")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -40,32 +40,32 @@ public class ClienteController {
 
         model.addAttribute("cliente", new Cliente());
         model.addAttribute("clientes", clientes);
-        return "cliente";
+        return "cliente/cliente";
     }
     
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute Cliente cliente) {
         clienteService.guardar(cliente);
-        return "redirect:/menu/cliente";
+        return "redirect:/menuV/cliente";
     }
 
     @GetMapping("/editar/{id}")
     public String editarCliente(@PathVariable Long id, Model model) {
         Optional<Cliente> cliente = clienteService.obtenerPorId(id);
         model.addAttribute("cliente", cliente);
-        return "cliente_editar";
+        return "cliente/cliente_editar";
     }
 
     @PostMapping("/editar")
     public String editarCliente(@ModelAttribute Cliente cliente) {
         clienteService.guardar(cliente);
-        return "redirect:/menu/cliente";
+        return "redirect:/menuV/cliente";
     }
     
     @PostMapping("/eliminar/{id}")
     public String eliminarCliente(@PathVariable Long id) {
         clienteService.eliminar(id);
-        return "redirect:/menu/cliente";
+        return "redirect:/menuV/cliente";
     }
     
     
