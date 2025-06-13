@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Login</title>
+    <script src="js/modals.js"></script>
     <style>
         /* Animación de fondo */
         .animated-bg {
@@ -60,18 +61,8 @@
             </div>
         </form>
     </div>
-    <script>
-        // Animación fade-in para el formulario
-        document.querySelector('form').classList.add('opacity-0');
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelector('form').classList.remove('opacity-0');
-                document.querySelector('form').classList.add('opacity-100');
-            }, 100);
-        });
-    </script>
+
     <style>
-        /* Fade-in animation */
         .animate-fade-in {
             opacity: 0;
             transition: opacity 0.8s;
@@ -81,7 +72,7 @@
             opacity: 1;
         }
 
-        /* Logo bounce lento */
+
         .animate-bounce-slow {
             animation: bounce 2.5s infinite;
         }
@@ -101,3 +92,13 @@
 </body>
 
 </html>
+<script>
+
+    document.querySelector('form').classList.add('opacity-0');
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            document.querySelector('form').classList.remove('opacity-0');
+            document.querySelector('form').classList.add('opacity-100');
+        }, 100);
+    });
+</script>

@@ -15,10 +15,6 @@
         </h1>
         <a th:href="@{/menu}"
             class="mb-8 px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold">Menú</a>
-        <button id="openModalProductoBtn"
-            class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
-            Registrar Producto
-        </button>
     </div>
     <!-- Modal para registrar producto -->
 
@@ -65,32 +61,24 @@
         </div>
     </div>
 
-    <script>
-        const openModalProductoBtn = document.getElementById('openModalProductoBtn');
-        const modalProducto = document.getElementById('modalProducto');
-        const closeModalProductoBtn = document.getElementById('closeModalProductoBtn');
 
-        openModalProductoBtn.addEventListener('click', () => {
-            modalProducto.classList.remove('hidden');
-        });
-
-        closeModalProductoBtn.addEventListener('click', () => {
-            modalProducto.classList.add('hidden');
-        });
-
-        modalProducto.addEventListener('click', (e) => {
-            if (e.target === modalProducto) {
-                modalProducto.classList.add('hidden');
-            }
-        });
-    </script>
-    <form th:action="@{/menu/producto}" method="get" >
-        <input type="text" name="filtro"  placeholder="Buscar Producto">
-        <button type="submit" >Buscar</button>
-        <a th:href="@{/menu/producto}" >Limpiar</a>
-    </form>
+    <div class="flex justify-between w-4/5 mx-auto mb-4 items-center">
+        <button id="openModalProductoBtn"
+            class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
+            Registrar Producto
+        </button>
+        <form th:action="@{/menu/producto}" method="get"
+            class="flex items-center space-x-2 bg-[#232946] p-3 rounded-lg shadow border border-violet-700">
+            <input type="text" name="filtro" placeholder="Buscar Cliente"
+                class="px-3 py-2 rounded bg-[#181c2a] text-white border border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
+            <button type="submit"
+                class="px-4 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded font-semibold hover:scale-105 transition shadow">Buscar</button>
+            <a th:href="@{/menu/producto}"
+                class="px-4 py-2 bg-gray-700 text-gray-200 rounded font-semibold hover:bg-gray-600 transition shadow">Limpiar</a>
+        </form>
+    </div>
     <div class="flex flex-col items-center">
-        <div class="w-4/5 py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div class="w-[85%] py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
             <div
                 class="inline-block w-full overflow-hidden align-middle border-b border-gray-700 shadow-lg sm:rounded-lg bg-[#232946]">
                 <table class="min-w-full table-fixed">
@@ -154,7 +142,26 @@
         </div>
 
     </div>
-    
+
 </body>
 
 </html>
+<script>
+    const openModalProductoBtn = document.getElementById('openModalProductoBtn');
+    const modalProducto = document.getElementById('modalProducto');
+    const closeModalProductoBtn = document.getElementById('closeModalProductoBtn');
+
+    openModalProductoBtn.addEventListener('click', () => {
+        modalProducto.classList.remove('hidden');
+    });
+
+    closeModalProductoBtn.addEventListener('click', () => {
+        modalProducto.classList.add('hidden');
+    });
+
+    modalProducto.addEventListener('click', (e) => {
+        if (e.target === modalProducto) {
+            modalProducto.classList.add('hidden');
+        }
+    });
+</script>

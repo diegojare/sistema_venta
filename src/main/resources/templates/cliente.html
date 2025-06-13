@@ -81,28 +81,9 @@
             </div>
         </div>
 
-        <script>
-            const openModalBtn = document.getElementById('openModalBtn');
-            const modalCliente = document.getElementById('modalCliente');
-            const closeModalBtn = document.getElementById('closeModalBtn');
 
-            openModalBtn.addEventListener('click', () => {
-                modalCliente.classList.remove('hidden');
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                modalCliente.classList.add('hidden');
-            });
-
-            // Cerrar modal al hacer click fuera del contenido
-            modalCliente.addEventListener('click', (e) => {
-                if (e.target === modalCliente) {
-                    modalCliente.classList.add('hidden');
-                }
-            });
-        </script>
     </div>
-    
+
     <div class="flex justify-between w-4/5 mx-auto mb-4 items-center">
         <button id="openModalBtn"
             class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
@@ -229,3 +210,23 @@
 </body>
 
 </html>
+<script>
+    const openModalBtn = document.getElementById('openModalBtn');
+    const modalCliente = document.getElementById('modalCliente');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    openModalBtn.addEventListener('click', () => {
+        modalCliente.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modalCliente.classList.add('hidden');
+    });
+
+    // Cerrar modal al hacer click fuera del contenido
+    modalCliente.addEventListener('click', (e) => {
+        if (e.target === modalCliente) {
+            modalCliente.classList.add('hidden');
+        }
+    });
+</script>
