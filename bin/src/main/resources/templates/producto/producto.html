@@ -13,7 +13,7 @@
     <header class="bg-transparent">
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a th:href="@{/menuA}" class="-m-1.5 p-1.5">
+                <a th:href="@{/menuV}" class="-m-1.5 p-1.5">
                     <span class="sr-only">test</span>
                     <img class="h-20 w-auto" src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="">
                 </a>
@@ -37,29 +37,30 @@
             </div>
 
             <div class="relative hidden lg:flex lg:flex-1 lg:justify-end">
-                <button id="userMenuButton" type="button" class="flex items-center focus:outline-none"
-                    aria-haspopup="true" aria-expanded="false">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user"
-                        class="w-10 h-10 rounded-full">
-                    <svg class="ml-2 w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.08z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </button>
+            <button id="userMenuButton" type="button"
+                class="flex items-center focus:outline-none"
+                aria-haspopup="true" aria-expanded="false">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    alt="user" class="w-10 h-10 rounded-full">
+                <svg class="ml-2 w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.08z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
 
-                <!-- Menú desplegable -->
-                <div id="userMenu"
-                    class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
-                    <div class="py-1">
-                        <form th:action="@{/login}" method="post" class="text-center">
-                            <button type="submit"
-                                class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
-                                Cerrar sesión
-                            </button>
-                        </form>
-                    </div>
+            <!-- Menú desplegable -->
+            <div id="userMenu"
+                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+                <div class="py-1">
+                    <form th:action="@{/login}" method="post" class="text-center">
+                        <button type="submit"
+                            class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
+                            Cerrar sesión
+                        </button>
+                    </form>
                 </div>
+            </div>
         </nav>
     </header>
     <script>
@@ -182,9 +183,9 @@
                             <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.idProducto}"></td>
                             <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.nomProd}"></td>
                             <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.marcaProd}"></td>
-                            <td class="px-4 py-4 border-b border-gray-700 text-violet-300 font-bold">
-                                S/<span class="text-violet-300 font-bold"
-                                    th:text="${#numbers.formatDecimal(producto.precioProd, 1, 'COMMA', 2, 'POINT')}"></span>
+                            <td class="px-4 py-4 border-b border-gray-700">
+                                <span class="text-violet-300 font-bold"
+                                    th:text="${#numbers.formatDecimal(producto.precioProd, 1, 'POINT', 2, 'NONE')}"></span>
                             </td>
                             <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.stockProd}"></td>
                             <td class="px-2 py-4 border-b border-gray-700">
@@ -207,24 +208,7 @@
         </div>
 
     </div>
-    <footer class="bg-gray-900 text-white text-center py-4 mt-12 w-full  bottom-0">
-        <div class="container mx-auto px-4">
-            <p class="mb-1">&copy;2025 Cibertec | Proyecto de Lenguaje Programacion II</p>
-            <p class="mb-1">
-                Desarrollado por: Diego Cabrera & Kaled Noronha
-            </p>
-            <p class="mb-0">
-                Síguenos:
-                <a href="https://github.com/diegojare" target="_blank" class="text-white underline">
-                    GitHub Diegojare
-                </a>
-                |
-                <a href="https://github.com/KaleNoronha" target="_blank" class="text-white underline">
-                    GitHub KaleNoronha
-                </a>
-            </p>
-        </div>
-    </footer>
+
 </body>
 
 </html>
