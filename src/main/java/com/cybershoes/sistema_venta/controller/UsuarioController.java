@@ -18,7 +18,7 @@ import com.cybershoes.sistema_venta.service.RolService;
 import com.cybershoes.sistema_venta.service.UsuarioService;
 
 @Controller
-@RequestMapping("/menuAd/usuario")
+@RequestMapping("/admin/usuario")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -50,7 +50,7 @@ public class UsuarioController {
     @PostMapping("/guardar")
     public String guardarUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.guardar(usuario);
-        return "redirect:/menuAd/usuario";
+        return "redirect:/admin/usuario";
     }
 
     @GetMapping("/editar/{id}")
@@ -65,13 +65,13 @@ public class UsuarioController {
     @PostMapping("/editar")
     public String editarUsuario(@ModelAttribute Usuario usuario) {
         usuarioService.guardar(usuario);
-        return "redirect:/menuAd/usuario";
+        return "redirect:/admin/usuario";
     }
     
     @PostMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable Long id) {
         usuarioService.eliminar(id);
-        return "redirect:/menuAd/usuario";
+        return "redirect:/admin/usuario";
     }
 
 }

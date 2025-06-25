@@ -4,291 +4,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>Cliente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 
-<body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-gray-200 font-sans">
-    <header class="bg-transparent">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-            <div class="flex lg:flex-1">
-                <a th:href="@{/menuV}" class="-m-1.5 p-1.5">
-                    <span class="sr-only">test</span>
-                    <img class="h-20 w-auto" src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="">
-                </a>
-            </div>
-            <div class="flex lg:hidden">
-                <button type="button"
-                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        aria-hidden="true" data-slot="icon">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                </button>
-            </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-                <!-- <a th:href="@{/menu/cliente}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Cliente</a>
-                <a th:href="@{/menu/producto}" class="text-base font-semibold text-white hover:text-violet-400 transition">Mantenimiento Producto</a>
-                <a th:href="@{/menu/venta}" class="text-base font-semibold text-white hover:text-violet-400 transition">Registrar Venta</a> -->
-                <h1 class="text-5xl font-extrabold text-white mb-6">CYBERSHOES</h1>
-            </div>
+<body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-white flex">
 
-            <div class="relative hidden lg:flex lg:flex-1 lg:justify-end">
-                <button id="userMenuButton" type="button" class="flex items-center focus:outline-none"
-                    aria-haspopup="true" aria-expanded="false">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user"
-                        class="w-10 h-10 rounded-full">
-                    <svg class="ml-2 w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.08z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </button>
+    <!-- Incluir el sidebar -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
 
-                <!-- Menú desplegable -->
-                <div id="userMenu"
-                    class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
-                    <div class="py-1">
-                        <form th:action="@{/login}" method="post" class="text-center">
+    <main class="flex-1 p-10">
+        <div class="flex flex-col items-center mt-12">
+            <h1 class="text-4xl font-extrabold text-white mb-6">Mantenimiento <span
+                    class="text-violet-400">Cliente</span>
+            </h1>
+            <!-- Botón para abrir el modal -->
+
+            <!-- Modal de registro de cliente en dos columnas -->
+            <div id="modalCliente"
+                class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 hidden">
+                <div class="bg-[#181c2a] w-full max-w-2xl p-8 rounded-xl shadow-2xl border border-violet-700 relative">
+                    <button id="closeModalBtn"
+                        class="absolute top-2 right-2 text-gray-400 hover:text-violet-400 text-2xl font-bold">&times;</button>
+                    <form th:action="@{/recepcionista/cliente/guardar}" th:object="${cliente}" method="post">
+                        <h2 class="text-2xl font-bold text-violet-400 mb-6 col-span-2 text-center">Registrar</h2>
+                        <input type="hidden" th:field="*{idCliente}" />
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Nombre:</label>
+                                <input type="text" th:field="*{nomCliente}" required
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Apellido:</label>
+                                <input type="text" th:field="*{apeCliente}" required
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Dni:</label>
+                                <input type="text" th:field="*{dniCliente}" required
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Sexo:</label>
+                                <select th:field="*{sexoCliente}"
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"
+                                    required>
+                                    <option value="">-- Seleccione --</option>
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Email:</label>
+                                <input type="email" th:field="*{emailCliente}" required
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Telefono:</label>
+                                <input type="text" th:field="*{telefCliente}" required
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-200 font-semibold mb-2">Fecha Nacimiento:</label>
+                                <input type="date" th:field="*{fecNacimCliente}" required
+                                    class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-6">
                             <button type="submit"
-                                class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
-                                Cerrar sesión
+                                class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold rounded hover:scale-105 transition shadow">
+                                Guardar
                             </button>
-                        </form>
-                    </div>
+                            <button type="reset"
+                                class="px-6 py-2 bg-gray-700 text-gray-200 font-bold rounded hover:bg-gray-600 transition shadow">
+                                Limpiar
+                            </button>
+                        </div>
+                    </form>
                 </div>
-        </nav>
-    </header>
+            </div>
+
+
+        </div>
+
+        <div class="flex justify-between w-4/5 mx-auto mb-4 items-center">
+            <button id="openModalBtn"
+                class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
+                Registrar Cliente
+            </button>
+            <form th:action="@{/recepcionista/cliente}" method="get"
+                class="flex items-center space-x-2 bg-[#232946] p-3 rounded-lg shadow border border-violet-700">
+                <input type="text" name="filtro" placeholder="Buscar Cliente"
+                    class="px-3 py-2 rounded bg-[#181c2a] text-white border border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
+                <button type="submit"
+                    class="px-4 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded font-semibold hover:scale-105 transition shadow">Buscar</button>
+                <a th:href="@{/recepcionista/cliente}"
+                    class="px-4 py-2 bg-gray-700 text-gray-200 rounded font-semibold hover:bg-gray-600 transition shadow">Limpiar</a>
+            </form>
+        </div>
+        <div class="flex flex-col items-center mt-5">
+            <div class="w-[85%] py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                <div
+                    class="inline-block w-full overflow-hidden align-middle border-b border-gray-700 shadow-lg sm:rounded-lg bg-[#232946]">
+                    <table class="min-w-full table-fixed">
+                        <colgroup>
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    ID</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Nombre</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Apellido</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Dni</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Sexo</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Email</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Telefono</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Fecha de Nacimiento</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cliente : ${clientes}" class="hover:bg-[#1e2235] transition">
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="flex items-center" th:text="${cliente.idCliente}"></div>
+                                </td>
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="text-sm leading-5 text-gray-100" th:text="${cliente.nomCliente}"></div>
+                                </td>
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="text-sm leading-5 text-gray-100" th:text="${cliente.apeCliente}"></div>
+                                </td>
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="text-sm leading-5 text-gray-100" th:text="${cliente.dniCliente}"></div>
+                                </td>
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="text-sm leading-5 text-gray-100" th:text="${cliente.sexoCliente}"></div>
+                                </td>
+                                <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <span
+                                        class="inline-flex px-2 text-xs font-semibold leading-5 text-violet-300 bg-violet-900 bg-opacity-30 rounded-full"
+                                        th:text="${cliente.emailCliente}"></span>
+                                </td>
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="text-sm leading-5 text-gray-100" th:text="${cliente.telefCliente}">
+                                    </div>
+                                </td>
+                                <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="text-sm leading-5 text-gray-100"
+                                        th:text="${#temporals.format(cliente.fecNacimCliente, 'dd-MM-yyyy')}"></div>
+                                </td>
+                                <td
+                                    class="px-2 py-4 text-sm leading-5 text-gray-300 whitespace-no-wrap border-b border-gray-700">
+                                    <div class="flex flex-row space-x-2">
+                                        <a th:href="@{/recepcionista/cliente/editar/{id}(id=${cliente.idCliente})}">
+                                            <button type="button"
+                                                class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">
+                                                Editar
+                                            </button>
+                                        </a>
+                                        <form
+                                            th:action="@{/recepcionista/cliente/eliminar/{id}(id=${cliente.idCliente})}"
+                                            method="post" onclick="return confirm('¿Eliminar cliente?')">
+                                            <button type="submit"
+                                                class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
     <script>
-        const userBtn = document.getElementById('userMenuButton');
-        const userMenu = document.getElementById('userMenu');
-
-        document.addEventListener('click', function (e) {
-            const isClickInside = userBtn.contains(e.target) || userMenu.contains(e.target);
-            if (isClickInside) {
-                userMenu.classList.toggle('hidden');
-            } else {
-                userMenu.classList.add('hidden');
-            }
-        });
+        lucide.createIcons();
     </script>
-    <div class="flex flex-col items-center mt-12">
-        <h1 class="text-4xl font-extrabold text-white mb-6">Mantenimiento <span class="text-violet-400">Cliente</span>
-        </h1>
-        <!-- Botón para abrir el modal -->
-
-
-        <!-- Modal de registro de cliente en dos columnas -->
-        <div id="modalCliente"
-            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 hidden">
-            <div class="bg-[#181c2a] w-full max-w-2xl p-8 rounded-xl shadow-2xl border border-violet-700 relative">
-                <button id="closeModalBtn"
-                    class="absolute top-2 right-2 text-gray-400 hover:text-violet-400 text-2xl font-bold">&times;</button>
-                <form th:action="@{/menuV/cliente/guardar}" th:object="${cliente}" method="post">
-                    <h2 class="text-2xl font-bold text-violet-400 mb-6 col-span-2 text-center">Registrar</h2>
-                    <input type="hidden" th:field="*{idCliente}" />
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Nombre:</label>
-                            <input type="text" th:field="*{nomCliente}" required
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Apellido:</label>
-                            <input type="text" th:field="*{apeCliente}" required
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Dni:</label>
-                            <input type="text" th:field="*{dniCliente}" required
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Sexo:</label>
-                            <select th:field="*{sexoCliente}"
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition"
-                                required>
-                                <option value="">-- Seleccione --</option>
-                                <option value="Hombre">Hombre</option>
-                                <option value="Mujer">Mujer</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Email:</label>
-                            <input type="email" th:field="*{emailCliente}" required
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Telefono:</label>
-                            <input type="text" th:field="*{telefCliente}" required
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-gray-200 font-semibold mb-2">Fecha Nacimiento:</label>
-                            <input type="date" th:field="*{fecNacimCliente}" required
-                                class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
-                        </div>
-                    </div>
-                    <div class="flex justify-between mt-6">
-                        <button type="submit"
-                            class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white font-bold rounded hover:scale-105 transition shadow">
-                            Guardar
-                        </button>
-                        <button type="reset"
-                            class="px-6 py-2 bg-gray-700 text-gray-200 font-bold rounded hover:bg-gray-600 transition shadow">
-                            Limpiar
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-    </div>
-
-    <div class="flex justify-between w-4/5 mx-auto mb-4 items-center">
-        <button id="openModalBtn"
-            class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold mb-6">
-            Registrar Cliente
-        </button>
-        <form th:action="@{/menuV/cliente}" method="get"
-            class="flex items-center space-x-2 bg-[#232946] p-3 rounded-lg shadow border border-violet-700">
-            <input type="text" name="filtro" placeholder="Buscar Cliente"
-                class="px-3 py-2 rounded bg-[#181c2a] text-white border border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-400 transition">
-            <button type="submit"
-                class="px-4 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded font-semibold hover:scale-105 transition shadow">Buscar</button>
-            <a th:href="@{/menuV/cliente}"
-                class="px-4 py-2 bg-gray-700 text-gray-200 rounded font-semibold hover:bg-gray-600 transition shadow">Limpiar</a>
-        </form>
-    </div>
-    <div class="flex flex-col items-center mt-5">
-        <div class="w-[85%] py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div
-                class="inline-block w-full overflow-hidden align-middle border-b border-gray-700 shadow-lg sm:rounded-lg bg-[#232946]">
-                <table class="min-w-full table-fixed">
-                    <colgroup>
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-                        <col style="width:10%">
-
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                ID</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Nombre</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Apellido</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Dni</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Sexo</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Email</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Telefono</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Fecha de Nacimiento</th>
-                            <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
-                                Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cliente : ${clientes}" class="hover:bg-[#1e2235] transition">
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="flex items-center" th:text="${cliente.idCliente}"></div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="text-sm leading-5 text-gray-100" th:text="${cliente.nomCliente}"></div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="text-sm leading-5 text-gray-100" th:text="${cliente.apeCliente}"></div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="text-sm leading-5 text-gray-100" th:text="${cliente.dniCliente}"></div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="text-sm leading-5 text-gray-100" th:text="${cliente.sexoCliente}"></div>
-                            </td>
-                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <span
-                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-violet-300 bg-violet-900 bg-opacity-30 rounded-full"
-                                    th:text="${cliente.emailCliente}"></span>
-                            </td>
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="text-sm leading-5 text-gray-100" th:text="${cliente.telefCliente}"></div>
-                            </td>
-                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-700">
-                                <div class="text-sm leading-5 text-gray-100"
-                                    th:text="${#temporals.format(cliente.fecNacimCliente, 'dd-MM-yyyy')}"></div>
-                            </td>
-                            <td
-                                class="px-2 py-4 text-sm leading-5 text-gray-300 whitespace-no-wrap border-b border-gray-700">
-                                <div class="flex flex-row space-x-2">
-                                    <a th:href="@{/menuV/cliente/editar/{id}(id=${cliente.idCliente})}">
-                                        <button type="button"
-                                            class="w-full px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition">
-                                            Editar
-                                        </button>
-                                    </a>
-                                    <form th:action="@{/menuV/cliente/eliminar/{id}(id=${cliente.idCliente})}"
-                                        method="post" onclick="return confirm('¿Eliminar cliente?')">
-                                        <button type="submit"
-                                            class="w-full px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
-                                            Eliminar
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="flex justify-center mt-8">
-        <a class="px-6 py-2 bg-gradient-to-r from-blue-500 to-violet-500 text-white rounded shadow-lg hover:scale-105 transition font-semibold"
-            th:href="@{/menuV}">
-            Regresar
-        </a>
-    </div>
-    <footer class="bg-gray-900 text-white text-center py-4 mt-12 w-full bottom-0">
-        <div class="container mx-auto px-4">
-            <p class="mb-1">&copy;2025 Cibertec | Proyecto de Lenguaje Programacion II</p>
-            <p class="mb-1">
-                Desarrollado por: Diego Cabrera & Kaled Noronha
-            </p>
-            <p class="mb-0">
-                Síguenos:
-                <a href="https://github.com/diegojare" target="_blank" class="text-white underline">
-                    GitHub Diegojare
-                </a>
-                |
-                <a href="https://github.com/KaleNoronha" target="_blank" class="text-white underline">
-                    GitHub KaleNoronha
-                </a>
-            </p>
-        </div>
-    </footer>
 </body>
 
 </html>

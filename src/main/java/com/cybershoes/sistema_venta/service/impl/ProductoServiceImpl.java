@@ -1,7 +1,6 @@
 package com.cybershoes.sistema_venta.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,27 +18,37 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public List<Producto> listarTodos() {
+    public List<Producto> listarTodosProductos() {
         return productoRepository.findAll();
     }
 
     @Override
-    public Optional<Producto> obtenerPorId(Long id) {
-        return productoRepository.findById(id);
+    public Producto buscarProductoById(Long id) {
+        return productoRepository.findById(id).get();
     }
 
     @Override
-    public Producto guardar(Producto producto) {
+    public Producto guardarProducto(Producto producto) {
         return productoRepository.save(producto);
     }
 
     @Override
-    public void eliminar(Long id) {
+    public void eliminarProductoById(Long id) {
         productoRepository.deleteById(id);
     }
 
     @Override
     public List<Producto> listarPorNombreOMarca(String filtro) {
-        return productoRepository.findByNomProdStartingWithIgnoreCaseOrMarcaProdContainingIgnoreCase(filtro, filtro);
+        return productoRepository.findByDescripcionStartingWithIgnoreCase(filtro);
+    }
+
+    @Override
+    public Producto buscarProductoByCodigo(String codProd) {
+        return productoRepository.findByCodigo(codProd);
+    }
+
+    @Override
+    public Producto actualizarProducto(Producto producto) {
+        return productoRepository.save(producto);
     }
 }

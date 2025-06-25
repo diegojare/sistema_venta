@@ -34,11 +34,11 @@ public class LoginController {
         Usuario user = usuarioService.login(usuario);
         if (user != null) {
             if (user.getRol().getIdRol() == 1) {
-                return "redirect:/menuAd";
+                return "redirect:/admin";
             } else if (user.getRol().getIdRol() == 2) {
-                return "redirect:/menuV";
+                return "redirect:/recepcionista";
             } else {
-                return "redirect:/menuA";
+                return "redirect:/login";
             }
 
 

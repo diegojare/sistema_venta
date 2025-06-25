@@ -1,0 +1,65 @@
+<!-- fragments/sidebar.html -->
+<div th:fragment="sidebar">
+  <aside class="w-64 bg-[#1e293b] p-6 flex flex-col min-h-screen text-white">
+    <div class="mb-10 text-center">
+      <a th:href="@{/recepcionista}">
+        <img src="https://cdn-icons-png.freepik.com/256/10709/10709491.png" alt="Logo" class="h-20 mx-auto mb-4">
+      </a>
+      <h1 class="text-2xl font-extrabold">CYBERSHOES</h1>
+    </div>
+
+    <nav class="flex-1">
+      <ul class="space-y-4">
+        <li>
+          <a th:href="@{/recepcionista/cliente}"
+            class="flex items-center gap-3 px-4 py-2 rounded hover:bg-violet-600 transition font-semibold">
+            <i data-lucide="users" class="w-5 h-5"></i> Mantenimiento Clientes
+          </a>
+        </li>
+        <li>
+          <a th:href="@{/recepcionista/producto}"
+            class="flex items-center gap-3 px-4 py-2 rounded hover:bg-violet-600 transition font-semibold">
+            <i data-lucide="box" class="w-5 h-5"></i> Mantenimiento Productos
+          </a>
+        </li>
+        <li class="group relative">
+          <button type="button"
+            class="w-full text-left px-4 py-2 rounded hover:bg-violet-600 transition font-semibold flex justify-between items-center">
+            <span class="flex items-center gap-3">
+              <i data-lucide="shopping-cart" class="w-5 h-5"></i> Mantenimiento Ventas
+            </span>
+            <svg class="w-4 h-4 ml-2 group-hover:rotate-180 transition-transform" fill="currentColor"
+              viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.23 8.29a.75.75 0 01.02-1.08z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+          <ul class="hidden group-hover:block mt-2 ml-8 space-y-2">
+            <li>
+              <a th:href="@{/recepcionista/venta/registrar}"
+                class="flex items-center gap-2 px-4 py-2 rounded hover:bg-violet-700 transition text-sm">
+                <i data-lucide="file-plus" class="w-4 h-4"></i> Registrar Venta
+              </a>
+            </li>
+            <li>
+              <a th:href="@{/recepcionista/venta/listar}"
+                class="flex items-center gap-2 px-4 py-2 rounded hover:bg-violet-700 transition text-sm">
+                <i data-lucide="list" class="w-4 h-4"></i> Listar Ventas
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="mt-10">
+      <form th:action="@{/login}" method="post">
+        <button type="submit"
+          class="w-full flex items-center gap-3 px-4 py-2 bg-red-600 rounded hover:bg-red-700 transition font-semibold">
+          <i data-lucide="log-out" class="w-5 h-5"></i> Cerrar sesión
+        </button>
+      </form>
+    </div>
+  </aside>
+</div>

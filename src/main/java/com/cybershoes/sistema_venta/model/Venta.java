@@ -1,5 +1,6 @@
 package com.cybershoes.sistema_venta.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -8,8 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,22 +23,27 @@ public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idVenta;
+    private Long nroVenta;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fechaVenta;
 
     @ManyToOne
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
     @ManyToOne
-    private Producto producto;
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
-    private Integer cantidad;
-    private Double total;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate fecha;
+	private BigDecimal subtotal;
+	
+	private BigDecimal igv;	
+	
+	private BigDecimal total;
+	
+	private BigDecimal ganancia;
 
-    @PrePersist
-    public void prePersist() {
-        this.fecha = LocalDate.now();
-        this.total = this.cantidad * this.producto.getPrecioProd();
-    }
+    
+
 }

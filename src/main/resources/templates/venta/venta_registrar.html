@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Spring Boot</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-white flex">
+	<!-- Incluir el sidebar -->
+	<div th:replace="fragments/sidebar :: sidebar"></div>
+
+	<main class="flex-1 p-10">
+		<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+			<!-- Columna izquierda: formularios -->
+			<div class="space-y-8">
+
+				<!-- Datos de la Venta -->
+				<form th:action="@{/recepcionista/venta/terminar}" method="post" th:object="${venta}"
+					class="bg-[#1e293b] p-6 rounded-2xl shadow-lg space-y-6">
+					<h2 class="text-2xl font-bold text-violet-400">Datos de la Venta</h2>
+
+					<div class="space-y-4">
+						<div>
+							<label class="block text-sm font-medium mb-1">Vendedor</label>
+							<select th:field="*{usuario}" name="usuarioVentalist"
+								class="w-full rounded-md px-3 py-2 bg-gray-800 text-white border border-gray-600 focus:ring-violet-500" required>
+								<option value="">-- Seleccione --</option>
+								<option th:each="usuario :${usuarioVentalist}" th:value="${usuario.idUsuario}"
+									th:text="${usuario.username}">
+								</option>
+							</select>
+						</div>
+
+						<div>
+							<label class="block text-sm font-medium mb-1">Cliente</label>
+							<select th:field="*{cliente}" name="clientelist"
+								class="w-full rounded-md px-3 py-2 bg-gray-800 text-white border border-gray-600 focus:ring-violet-500" required>
+								<option value="">-- Seleccione --</option>
+								<option th:each="cliente :${clientelist}" th:value="${cliente.idCliente}"
+									th:text="${cliente.nomCliente} + ' ' + ${cliente.apeCliente}"></option>
+							</select>
+						</div>
+					</div>
+
+					<div class="flex gap-4">
+						<button type="submit"
+							class="flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition">
+							<i class="fa fa-check"></i> Terminar venta
+						</button>
+						<a th:href="@{/recepcionista/venta/limpiar}"
+							class="flex items-center gap-2 px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition">
+							<i class="fa fa-trash"></i> Cancelar venta
+						</a>
+					</div>
+				</form>
+
+				<!-- Agregar Producto -->
+				<form th:object="${producto}" th:action="@{/recepcionista/venta/agregar}" method="post"
+					class="bg-[#1e293b] p-6 rounded-2xl shadow-lg space-y-4">
+					<h2 class="text-2xl font-bold text-violet-400">Agregar Producto</h2>
+
+					<div>
+						<label for="codigo" class="block text-sm font-medium mb-1">Código de barras</label>
+						<input autofocus autocomplete="off" th:field="*{codigo}" id="codigo"
+							placeholder="Escanea o escribe y presiona Enter" type="text"
+							class="w-full rounded-md px-3 py-2 bg-gray-800 text-white border border-gray-600 focus:ring-violet-500"
+							th:classappend="${#fields.hasErrors('codigo')} ? 'border-red-500' : ''" />
+						<div class="text-red-400 text-sm mt-1" th:errors="*{codigo}"></div>
+					</div>
+				</form>
+
+				<!-- Alerta -->
+				<div th:if="${mensaje != null}"
+					th:class="'rounded-md px-4 py-3 text-white font-semibold ' + (${clase} == 'success' ? 'bg-green-500' : (${clase} == 'danger' ? 'bg-red-500' : 'bg-blue-500'))"
+					th:text="${mensaje}">
+				</div>
+			</div>
+
+			<!-- Columna derecha: tabla de productos -->
+			<div class="space-y-4">
+				<div class="bg-[#1e293b] p-6 rounded-2xl shadow-lg">
+					<h2 class="text-2xl font-bold text-violet-400 mb-4">Productos en la Venta</h2>
+					<div class="overflow-x-auto">
+						<table class="min-w-full border border-gray-700 rounded-xl overflow-hidden text-sm">
+							<thead class="bg-gray-800 text-violet-300 uppercase tracking-wider">
+								<tr>
+									<th class="px-4 py-2 text-left">Nombre</th>
+									<th class="px-4 py-2 text-left">Código</th>
+									<th class="px-4 py-2 text-left">Precio</th>
+									<th class="px-4 py-2 text-left">Cantidad</th>
+									<th class="px-4 py-2 text-left">Importe</th>
+									<th class="px-4 py-2 text-center">Quitar</th>
+								</tr>
+							</thead>
+							<tbody class="bg-gray-900 text-white divide-y divide-gray-700">
+								<tr th:each="producto, iterador : ${session.carrito}">
+									<td class="px-4 py-2" th:text="${producto.descripcion}"></td>
+									<td class="px-4 py-2" th:text="${producto.codigo}"></td>
+									<td class="px-4 py-2" th:text="${producto.precioVenta}"></td>
+									<td class="px-4 py-2" th:text="${producto.cantidad}"></td>
+									<td class="px-4 py-2" th:text="${producto.total}"></td>
+									<td class="px-4 py-2 text-center">
+										<form th:action="@{/recepcionista/venta/quitar/} + ${iterador.index}" method="post">
+											<button type="submit"
+												class="text-red-500 hover:text-red-700 transition p-1 rounded-md flex items-center justify-center mx-auto">
+												<i data-lucide="trash-2" class="w-4 h-4"></i>
+											</button>
+										</form>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="text-right text-xl font-bold text-green-400 mt-4" th:text="${'Total: S/. ' + total}"></div>
+				</div>
+			</div>
+
+		</div>
+	</main>
+
+
+	<script>
+		lucide.createIcons();
+	</script>
+</body>
+
+</html>

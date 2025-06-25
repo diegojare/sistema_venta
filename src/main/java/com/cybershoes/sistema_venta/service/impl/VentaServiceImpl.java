@@ -6,9 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cybershoes.sistema_venta.model.Producto;
 import com.cybershoes.sistema_venta.model.Venta;
-import com.cybershoes.sistema_venta.repository.ProductoRepository;
 import com.cybershoes.sistema_venta.repository.VentaRepository;
 import com.cybershoes.sistema_venta.service.VentaService;
 
@@ -16,22 +14,14 @@ import com.cybershoes.sistema_venta.service.VentaService;
 public class VentaServiceImpl implements VentaService {
 
     private final VentaRepository ventaRepository;
-    private final ProductoRepository productoRepository;
 
-    public VentaServiceImpl(VentaRepository ventaRepository, ProductoRepository productoRepository) {
+    public VentaServiceImpl(VentaRepository ventaRepository) {
         this.ventaRepository = ventaRepository;
-        this.productoRepository = productoRepository;
     }
     
     @Override
     @Transactional
     public Venta registrarVenta(Venta venta) {
-        Producto producto = venta.getProducto();
-        if (producto.getStockProd() < venta.getCantidad()) {
-            throw new IllegalArgumentException("Stock insuficiente");
-        }
-        producto.setStockProd(producto.getStockProd() - venta.getCantidad());
-        productoRepository.save(producto);
         return ventaRepository.save(venta);
     }
 

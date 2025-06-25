@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Spring Boot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-white flex">
+
+    <!-- Incluir el sidebar -->
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <main class="flex-1 p-10">
+        <div class="max-w-5xl mx-auto bg-[#1e293b] p-6 rounded-2xl shadow-lg space-y-6">
+
+
+            <div class="overflow-x-auto">
+
+                <h1 class="text-4xl font-bold text-violet-400 mb-4">Nro de Venta :</h1>
+                <h4 class="text-2xl text-violet-400 mb-3">Fecha :</h4>
+                <h4 class="text-2xl text-violet-400 mb-3">Cliente :</h4>
+
+                <table class="min-w-full text-sm border border-gray-700 rounded-xl overflow-hidden">
+                    <thead class="bg-gray-800 text-violet-300 uppercase tracking-wider">
+                        <tr>
+                            <th class="px-4 py-2 text-left">Producto</th>
+                            <th class="px-4 py-2 text-left">Cantidad</th>
+                            <th class="px-4 py-2 text-left">Precio</th>
+                            <th class="px-4 py-2 text-left">Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-gray-900 text-white divide-y divide-gray-700">
+                        <tr th:each="item: ${listDetalleVenta}">
+                            <td class="px-4 py-2" th:text="${item.idDetalleVenta.producto.descripcion}"></td>
+                            <td class="px-4 py-2" th:text="${item.cantidadVta}"></td>
+                            <td class="px-4 py-2" th:text="${item.precioVta}"></td>
+                            <td class="px-4 py-2 font-semibold text-green-400" th:text="${item.importeVta}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a th:href="@{/recepcionista/venta/listar}"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition text-sm">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver a listado
+            </a>
+
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>
