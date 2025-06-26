@@ -21,21 +21,25 @@
 
                 <h1 class="text-4xl font-bold text-violet-400 mb-4">Nro de Venta :</h1>
                 <h4 class="text-2xl text-violet-400 mb-3">Fecha :</h4>
-                <h4 class="text-2xl text-violet-400 mb-3">Cliente :</h4>
+                <h4 class="text-2xl text-violet-400 mb-3">Cliente : <span th:text="${.}"></span></h4>
 
                 <table class="min-w-full text-sm border border-gray-700 rounded-xl overflow-hidden">
                     <thead class="bg-gray-800 text-violet-300 uppercase tracking-wider">
                         <tr>
-                            <th class="px-4 py-2 text-left">Producto</th>
                             <th class="px-4 py-2 text-left">Cantidad</th>
+                            <th class="px-4 py-2 text-left">Marca</th>
+                            <th class="px-4 py-2 text-left">Modelo</th>
+                            <th class="px-4 py-2 text-left">Descripcion</th>
                             <th class="px-4 py-2 text-left">Precio</th>
                             <th class="px-4 py-2 text-left">Importe</th>
                         </tr>
                     </thead>
                     <tbody class="bg-gray-900 text-white divide-y divide-gray-700">
                         <tr th:each="item: ${listDetalleVenta}">
-                            <td class="px-4 py-2" th:text="${item.idDetalleVenta.producto.descripcion}"></td>
                             <td class="px-4 py-2" th:text="${item.cantidadVta}"></td>
+                            <td class="px-4 py-2" th:text="${item.idDetalleVenta.producto.marcaProd}"></td>
+                            <td class="px-4 py-2" th:text="${item.idDetalleVenta.producto.modeloProd}"></td>
+                            <td class="px-4 py-2" th:text="${item.idDetalleVenta.producto.descripcion}"></td>
                             <td class="px-4 py-2" th:text="${item.precioVta}"></td>
                             <td class="px-4 py-2 font-semibold text-green-400" th:text="${item.importeVta}"></td>
                         </tr>

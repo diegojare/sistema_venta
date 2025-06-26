@@ -38,6 +38,16 @@
                             class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
                     </div>
                     <div class="mb-4">
+                        <label class="block text-gray-200 font-semibold mb-2">Marca:</label>
+                        <input type="text" th:field="*{marcaProd}" required
+                            class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-200 font-semibold mb-2">Modelo:</label>
+                        <input type="text" th:field="*{modeloProd}" required
+                            class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
+                    </div>
+                    <div class="mb-4">
                         <label class="block text-gray-200 font-semibold mb-2">Descripcion:</label>
                         <input type="text" th:field="*{descripcion}" required
                             class="w-full px-3 py-2 border border-violet-500 rounded bg-[#232946] text-white focus:outline-none focus:ring-2 focus:ring-violet-400 transition" />
@@ -93,12 +103,15 @@
                     class="inline-block w-full overflow-hidden align-middle border-b border-gray-700 shadow-lg sm:rounded-lg bg-[#232946]">
                     <table class="min-w-full table-fixed">
                         <colgroup>
-                            <col style="width:10%">
-                            <col style="width:30%">
-                            <col style="width:20%">
-                            <col style="width:20%">
-                            <col style="width:10%">
-                            <col style="width:10%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:11%">
+                            <col style="width:12%">
                         </colgroup>
                         <thead>
                             <tr>
@@ -108,6 +121,12 @@
                                 <th
                                     class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
                                     Codigo</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Marca</th>
+                                <th
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
+                                    Modelo</th>
                                 <th
                                     class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-700 bg-gradient-to-r from-indigo-700 to-violet-700">
                                     descripcion</th>
@@ -129,6 +148,8 @@
                             <tr th:each="producto : ${productos}" class="hover:bg-[#1e2235] transition">
                                 <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.idProducto}"></td>
                                 <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.codigo}"></td>
+                                <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.marcaProd}"></td>
+                                <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.modeloProd}"></td>
                                 <td class="px-4 py-4 border-b border-gray-700" th:text="${producto.descripcion}"></td>
                                 <td class="px-4 py-4 border-b border-gray-700 text-violet-300 font-bold">
                                     S/<span class="text-violet-300 font-bold"

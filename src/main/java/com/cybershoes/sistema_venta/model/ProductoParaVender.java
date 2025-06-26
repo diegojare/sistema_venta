@@ -12,9 +12,9 @@ public class ProductoParaVender extends Producto {
     private int cantidad;
 
 	//Agregar constructor en entidad Producto
-    public ProductoParaVender(Long idProducto, String codigo, String descripcion,
-    		BigDecimal precioCompra, BigDecimal precioVenta , int stock, int cantidad) {
-        super(idProducto,codigo,descripcion, precioCompra, precioVenta, stock);
+    public ProductoParaVender(Long idProducto, String codigo,String marcaProd,String modeloProd, String descripcion,
+    	BigDecimal precioCompra, BigDecimal precioVenta , int stock, int cantidad) {
+        super(idProducto, codigo, marcaProd, modeloProd, descripcion, precioCompra, precioVenta, stock);
         this.cantidad = cantidad;
     }
 

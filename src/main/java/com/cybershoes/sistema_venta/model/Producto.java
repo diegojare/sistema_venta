@@ -24,6 +24,10 @@ public class Producto {
 
 	private String codigo;
 	
+	private String marcaProd;
+
+	private String modeloProd;
+
 	private String descripcion;
 		
 	private BigDecimal precioCompra;

@@ -133,7 +133,7 @@ public class VentaController {
 		if (!encontrado) {// si encontrado es falso (no encontró el producto en carrito)
 			carrito.add(
 					new ProductoParaVender(productoBuscadoPorCodigo.getIdProducto(),
-							productoBuscadoPorCodigo.getCodigo(),
+							productoBuscadoPorCodigo.getCodigo(),productoBuscadoPorCodigo.getMarcaProd(),productoBuscadoPorCodigo.getModeloProd(),
 							productoBuscadoPorCodigo.getDescripcion(), productoBuscadoPorCodigo.getPrecioCompra(),
 							productoBuscadoPorCodigo.getPrecioVenta(), productoBuscadoPorCodigo.getStock(), 1// cantidad
 																												// arbritariamente

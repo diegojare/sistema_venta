@@ -13,10 +13,10 @@
 	<div th:replace="fragments/sidebar :: sidebar"></div>
 
 	<main class="flex-1 p-10">
-		<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+		<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
 
 			<!-- Columna izquierda: formularios -->
-			<div class="space-y-8">
+			<div class="lg:col-span-1 space-y-8">
 
 				<!-- Datos de la Venta -->
 				<form th:action="@{/recepcionista/venta/terminar}" method="post" th:object="${venta}"
@@ -81,15 +81,16 @@
 			</div>
 
 			<!-- Columna derecha: tabla de productos -->
-			<div class="space-y-4">
+			<div class="lg:col-span-2 space-y-4">
 				<div class="bg-[#1e293b] p-6 rounded-2xl shadow-lg">
 					<h2 class="text-2xl font-bold text-violet-400 mb-4">Productos en la Venta</h2>
 					<div class="overflow-x-auto">
 						<table class="min-w-full border border-gray-700 rounded-xl overflow-hidden text-sm">
 							<thead class="bg-gray-800 text-violet-300 uppercase tracking-wider">
 								<tr>
-									<th class="px-4 py-2 text-left">Nombre</th>
 									<th class="px-4 py-2 text-left">Código</th>
+									<th class="px-4 py-2 text-left">Marca</th>
+									<th class="px-4 py-2 text-left">Modelo</th>
 									<th class="px-4 py-2 text-left">Precio</th>
 									<th class="px-4 py-2 text-left">Cantidad</th>
 									<th class="px-4 py-2 text-left">Importe</th>
@@ -98,8 +99,9 @@
 							</thead>
 							<tbody class="bg-gray-900 text-white divide-y divide-gray-700">
 								<tr th:each="producto, iterador : ${session.carrito}">
-									<td class="px-4 py-2" th:text="${producto.descripcion}"></td>
 									<td class="px-4 py-2" th:text="${producto.codigo}"></td>
+									<td class="px-4 py-2" th:text="${producto.marcaProd}"></td>
+									<td class="px-4 py-2" th:text="${producto.modeloProd}"></td>
 									<td class="px-4 py-2" th:text="${producto.precioVenta}"></td>
 									<td class="px-4 py-2" th:text="${producto.cantidad}"></td>
 									<td class="px-4 py-2" th:text="${producto.total}"></td>
