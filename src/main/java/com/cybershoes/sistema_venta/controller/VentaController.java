@@ -1,5 +1,6 @@
 package com.cybershoes.sistema_venta.controller;
 
+import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +21,14 @@ import com.cybershoes.sistema_venta.service.DetalleVentaService;
 import com.cybershoes.sistema_venta.service.ProductoService;
 import com.cybershoes.sistema_venta.service.UsuarioService;
 import com.cybershoes.sistema_venta.service.VentaService;
+import com.cybershoes.sistema_venta.util.PdfService;
 
+
+import org.springframework.http.HttpHeaders;
+
+import org.springframework.http.MediaType;
+
+import org.springframework.http.ResponseEntity;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,14 +45,16 @@ public class VentaController {
 	private final ProductoService productoService;
 	private final UsuarioService usuarioService;
 	private final DetalleVentaService detalleVentaService;
+	private final PdfService pdfService;
 
 	public VentaController(VentaService ventaService, ClienteService clienteService, ProductoService productoService,
-			UsuarioService usuarioService, DetalleVentaService detalleVentaService) {
+			UsuarioService usuarioService, DetalleVentaService detalleVentaService, PdfService pdfService) {
 		this.ventaService = ventaService;
 		this.clienteService = clienteService;
 		this.productoService = productoService;
 		this.usuarioService = usuarioService;
 		this.detalleVentaService = detalleVentaService;
+		this.pdfService = pdfService;
 	}
 
 	@GetMapping("/listar")
@@ -221,5 +231,20 @@ public class VentaController {
 		model.addAttribute("listDetalleVenta", dv);
 		return "venta/venta_detalles";
 	}
+	@GetMapping("/listar/pdf")
+	public ResponseEntity<byte[]> descargarPdfListaVentas() {
+	    List<Venta> ventas = ventaService.listarTodos();
+	    ByteArrayInputStream bis = pdfService.listaVentasPdf(ventas);
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.add("Content-Disposition", "inline; filename=lista_ventas.pdf");
+
+	    return ResponseEntity.ok()
+	            .headers(headers)
+	            .contentType(MediaType.APPLICATION_PDF)
+	            .body(bis.readAllBytes());
+	}
+
+
 
 }
