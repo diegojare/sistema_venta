@@ -2,75 +2,81 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Spring Boot</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+	<meta charset="ISO-8859-1">
+	<title>Spring Boot</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body class="bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#312e81] min-h-screen text-white flex">
-    <!-- Incluir el sidebar -->
-    <div th:replace="fragments/sidebar :: sidebar"></div>
+	<!-- Incluir el sidebar -->
+	<div th:replace="fragments/sidebar :: sidebar"></div>
 
-    <main class="flex-1 p-10">
-        <div class="max-w-7xl mx-auto bg-[#1e293b] p-6 rounded-2xl shadow-lg space-y-6">
+	<main class="flex-1 p-10">
+		<div class="max-w-7xl mx-auto bg-[#1e293b] p-6 rounded-2xl shadow-lg space-y-6">
 
-            <h1 class="text-3xl font-bold text-violet-400 mb-4">Lista de Ventas</h1>
+			<div class="flex items-center justify-between mb-4">
+				<h1 class="text-3xl font-bold text-violet-400">Lista de Ventas</h1>
+				<a th:href="@{/recepcionista/venta/listar/pdf}" target="_blank"
+					class="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition text-sm font-semibold shadow">
+					<i data-lucide="download" class="w-4 h-4"></i> Descargar PDF
+				</a>
+			</div>
 
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-sm border border-gray-700 rounded-xl overflow-hidden">
-                    <thead class="bg-gray-800 text-violet-300 uppercase tracking-wider">
-                        <tr>
-                            <th class="px-4 py-2 text-left">Nro Venta</th>
-                            <th class="px-4 py-2 text-left">Fecha</th>
-                            <th class="px-4 py-2 text-left">Cliente</th>
-                            <th class="px-4 py-2 text-left">Vendedor</th>
-                            <th class="px-4 py-2 text-left">Subtotal</th>
-                            <th class="px-4 py-2 text-left">IGV</th>
-                            <th class="px-4 py-2 text-left">Total</th>
-                            <th class="px-4 py-2 text-center">Ver</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-gray-900 text-white divide-y divide-gray-700">
-                        <tr th:each="item : ${ventas}">
-                            <td class="px-4 py-2" th:text="${item.nroVenta}"></td>
-                            <td class="px-4 py-2" th:text="${item.fechaVenta}"></td>
+			<div class="overflow-x-auto">
+				<table class="min-w-full text-sm border border-gray-700 rounded-xl overflow-hidden">
+					<thead class="bg-gray-800 text-violet-300 uppercase tracking-wider">
+						<tr>
+							<th class="px-4 py-2 text-left">Nro Venta</th>
+							<th class="px-4 py-2 text-left">Fecha</th>
+							<th class="px-4 py-2 text-left">Cliente</th>
+							<th class="px-4 py-2 text-left">Vendedor</th>
+							<th class="px-4 py-2 text-left">Subtotal</th>
+							<th class="px-4 py-2 text-left">IGV</th>
+							<th class="px-4 py-2 text-left">Total</th>
+							<th class="px-4 py-2 text-center">Ver</th>
+						</tr>
+					</thead>
+					<tbody class="bg-gray-900 text-white divide-y divide-gray-700">
+						<tr th:each="item : ${ventas}">
+							<td class="px-4 py-2" th:text="${item.nroVenta}"></td>
+							<td class="px-4 py-2" th:text="${item.fechaVenta}"></td>
 
-                            <td class="px-4 py-2">
-                                <th:block th:each="cliente, iter : ${item.cliente}">
-                                    <span th:text="${cliente.nomCliente}"></span>
-                                    <th:block th:if="${!iter.last}">, </th:block>
-                                </th:block>
-                            </td>
+							<td class="px-4 py-2">
+								<th:block th:each="cliente, iter : ${item.cliente}">
+									<span th:text="${cliente.nomCliente}"></span>
+									<th:block th:if="${!iter.last}">, </th:block>
+								</th:block>
+							</td>
 
-                            <td class="px-4 py-2">
-                                <th:block th:each="usuario, iter : ${item.usuario}">
-                                    <span th:text="${usuario.username}"></span>
-                                    <th:block th:if="${!iter.last}">, </th:block>
-                                </th:block>
-                            </td>
+							<td class="px-4 py-2">
+								<th:block th:each="usuario, iter : ${item.usuario}">
+									<span th:text="${usuario.username}"></span>
+									<th:block th:if="${!iter.last}">, </th:block>
+								</th:block>
+							</td>
 
-                            <td class="px-4 py-2" th:text="${item.subtotal}"></td>
-                            <td class="px-4 py-2" th:text="${item.igv}"></td>
-                            <td class="px-4 py-2 font-semibold text-green-400" th:text="${item.total}"></td>
+							<td class="px-4 py-2" th:text="${item.subtotal}"></td>
+							<td class="px-4 py-2" th:text="${item.igv}"></td>
+							<td class="px-4 py-2 font-semibold text-green-400" th:text="${item.total}"></td>
 
-                            <td class="px-4 py-2 text-center">
-                                <a th:href="@{/recepcionista/venta/listar/verDetalle/{id}(id=${item.nroVenta})}"
-                                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm">
-                                    <i data-lucide="eye" class="w-4 h-4"></i> Ver Detalle
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+							<td class="px-4 py-2 text-center">
+								<a th:href="@{/recepcionista/venta/listar/verDetalle/{id}(id=${item.nroVenta})}"
+									class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm">
+									<i data-lucide="eye" class="w-4 h-4"></i> Ver Detalle
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-        </div>
-    </main>
+		</div>
+	</main>
 
-    <script>
-        lucide.createIcons();
-    </script>
+	<script>
+		lucide.createIcons();
+	</script>
 </body>
 
 </html>
