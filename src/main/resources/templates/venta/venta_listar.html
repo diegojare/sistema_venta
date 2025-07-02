@@ -44,14 +44,14 @@
 
 							<td class="px-4 py-2">
 								<th:block th:each="cliente, iter : ${item.cliente}">
-									<span th:text="${cliente.nomCliente}"></span>
+									<span th:text="${cliente.nomCliente}+' '+${cliente.apeCliente}"></span>
 									<th:block th:if="${!iter.last}">, </th:block>
 								</th:block>
 							</td>
 
 							<td class="px-4 py-2">
 								<th:block th:each="usuario, iter : ${item.usuario}">
-									<span th:text="${usuario.username}"></span>
+									<span th:text="${usuario.nomUsuario} + ' '+ ${usuario.apeUsuario}"></span>
 									<th:block th:if="${!iter.last}">, </th:block>
 								</th:block>
 							</td>

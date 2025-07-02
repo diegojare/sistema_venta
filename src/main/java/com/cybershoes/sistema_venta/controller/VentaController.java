@@ -200,7 +200,6 @@ public class VentaController {
 
 		// actualizar los datos de la venta nueva y guardarla finalmente
 		miVenta.setNroVenta(v.getNroVenta());
-		// miVenta.setTotal (miVenta.getSubtotal().add(miVenta.getIgv()));
 		miVenta.setTotal(total);
 		miVenta.setIgv(miVenta.getTotal().multiply(new BigDecimal(0.18)));
 		miVenta.setSubtotal(miVenta.getTotal().subtract(miVenta.getIgv()));
@@ -228,7 +227,9 @@ public class VentaController {
 	@GetMapping("/listar/verDetalle/{id}")
 	public String verDetalleForm(@PathVariable Long id, Model model) {
 		List<DetalleVenta> dv = detalleVentaService.buscarDetalleVentaByNroVenta(id);
+		Venta venta = ventaService.obtenerPorId(id).get();
 		model.addAttribute("listDetalleVenta", dv);
+		model.addAttribute("venta", venta);
 		return "venta/venta_detalles";
 	}
 	@GetMapping("/listar/pdf")
